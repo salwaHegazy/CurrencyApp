@@ -11,5 +11,6 @@ target 'CurrencyApp' do
   pod 'RxSwift', '~> 5.1.0'
   pod 'RxCocoa', '~> 5.1.0'
   pod 'Kingfisher'
+  pod 'DropDown'
 
 end
