@@ -105,11 +105,12 @@
                                                     <constraint firstItem="E2W-JL-U5T" firstAttribute="leading" secondItem="wiW-MT-Itt" secondAttribute="trailing" constant="3" id="wvx-Vz-Bgb"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-SF-jy8">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zh3-m1-D8k">
                                                 <rect key="frame" x="0.0" y="40" width="114.5" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -142,6 +143,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Leg-Nc-ffd"/>
                     <connections>
+                        <outlet property="amountTextField" destination="xaS-Sw-zW1" id="raX-wX-qHF"/>
+                        <outlet property="convertedAmountLabel" destination="zh3-m1-D8k" id="0Kw-Md-bWd"/>
                         <outlet property="fromDropDownView" destination="tjl-OK-sPS" id="Yhz-7o-RsH"/>
                         <outlet property="fromSelectedLabel" destination="ZJR-Vg-V8Y" id="SCo-12-i4U"/>
                         <outlet property="toDropDownView" destination="AzT-7d-VAZ" id="odr-Hl-h73"/>

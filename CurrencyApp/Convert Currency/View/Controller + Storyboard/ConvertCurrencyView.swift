@@ -16,6 +16,8 @@ class ConvertCurrencyView: UIViewController {
     @IBOutlet weak var toDropDownView: UIView!
     @IBOutlet weak var fromSelectedLabel: UILabel!
     @IBOutlet weak var toSelectedLabel: UILabel!
+    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var convertedAmountLabel: UILabel!
     
     //MARK: - Members
     
