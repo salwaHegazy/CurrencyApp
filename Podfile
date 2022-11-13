@@ -6,7 +6,7 @@ target 'CurrencyApp' do
   use_frameworks!
 
   # Pods for CurrencyApp
-  pod 'Alamofire', '~> 4.8'
+  pod 'Alamofire'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'RxSwift', '~> 5.1.0'
   pod 'RxCocoa', '~> 5.1.0'
