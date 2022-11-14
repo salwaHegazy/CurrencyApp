@@ -26,6 +26,8 @@ class ConvertCurrencyViewController: UIViewController {
     let toDropDown   = DropDown()
     let convertCurrencyViewModel = ConvertCurrencyViewModel()
     let disposeBag = DisposeBag()
+    lazy var constants = Constants.shared
+
     
     //MARK: - LifeCycle
     
@@ -36,6 +38,7 @@ class ConvertCurrencyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigationBar()
         subscribeToCurrenciesResponse()
         setUpTextFields()
         setUpDropDownViews()
@@ -65,11 +68,16 @@ class ConvertCurrencyViewController: UIViewController {
     
     //MARK: - Methods
     
+    func setUpNavigationBar() {
+        navigationItem.title = "Convert Currency"
+    }
+    
     func setUpTextFields() {
         fromSelectedTextField.isUserInteractionEnabled = false
-        toSelectedTextField.isUserInteractionEnabled = false
+        toSelectedTextField.isUserInteractionEnabled   = false
+        convertedAmountTextField.isUserInteractionEnabled = false
         amountTextField.delegate = self
-        convertedAmountTextField.delegate = self
+       // convertedAmountTextField.delegate = self
     }
     
     func setUpDropDownViews() {
@@ -121,7 +129,7 @@ class ConvertCurrencyViewController: UIViewController {
     func subscribeToShowAlert() {
         convertCurrencyViewModel.showAlertBehavior.subscribe(onNext: { [weak self] message in
            guard let self = self else { return }
-           self.showAlert(withTitle: "Alert", andMessage: message)
+            self.showAlert(withTitle: self.constants.alertTitle, andMessage: message)
         }).disposed(by: disposeBag)
     }
     
@@ -143,7 +151,7 @@ class ConvertCurrencyViewController: UIViewController {
             toSelectedTextField.text = fromSelectedTextField.text
             fromSelectedTextField.text = toSelectedText
         } else {
-            showAlert(withTitle: "Alert", andMessage: "Please Select From And To Currencies ")
+            showAlert(withTitle: constants.alertTitle, andMessage: constants.EmptyCurrenciesAlertMessage)
         }
     }
     
@@ -160,13 +168,16 @@ class ConvertCurrencyViewController: UIViewController {
     func convertCurrency() {
         convertCurrencyViewModel.convertCurrency()
     }
-    
 }
 
 //MARK: - UITextField Delegate
 extension ConvertCurrencyViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-       // convertCurrency()
+        if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true) {
+            convertCurrency()
+        } else {
+            showAlert(withTitle: constants.alertTitle, andMessage: constants.EmptyCurrenciesAlertMessage)
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

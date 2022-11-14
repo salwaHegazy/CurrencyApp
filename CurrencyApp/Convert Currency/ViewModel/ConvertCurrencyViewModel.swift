@@ -30,10 +30,12 @@ class ConvertCurrencyViewModel {
         return convertedAmountSubject
     }
     
+    lazy var constants = Constants.shared
+    
     //MARK: - Methods
     func getAvailableCurrencies() {
         let headers = [
-            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
+            "apikey" : constants.apiKey
         ]
 
         APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
@@ -68,7 +70,7 @@ class ConvertCurrencyViewModel {
         ]
         
         let headers = [
-            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
+            "apikey" : constants.apiKey
         ]
         
         print("params =" , params)

@@ -23,7 +23,13 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigationBar()
 
+    }
+    
+    //MARK: - Methods
+    func setUpNavigationBar() {
+        navigationItem.title = "Historical Data"
     }
     
 
