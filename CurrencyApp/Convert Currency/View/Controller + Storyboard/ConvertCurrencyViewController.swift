@@ -56,7 +56,7 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     @IBAction func detailsBtnPressed(_ sender: Any) {
-        convertCurrency()
+        navigateToDetailsViewController()
     }
     
     @IBAction func swapBtnPressed(_ sender: Any) {
@@ -145,6 +145,12 @@ class ConvertCurrencyViewController: UIViewController {
             fromSelectedTextField.text = toSelectedText
         } else {
             showAlert(withTitle: "Alert", andMessage: "Please Select From And To Currencies ")
+        }
+    }
+    
+    func navigateToDetailsViewController() {
+        if let detailsVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+           self.navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
     
