@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - ConvertModel
 struct ConvertModel: Codable {
-    let success: Bool
-    let query: Query
-    let info: Info
-    let date: String
-    let result: Double
+    let success: Bool?
+    let query: Query?
+    let info: Info?
+    let date: String?
+    let result: Double?
 }
 
 // MARK: - Info

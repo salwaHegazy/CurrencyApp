@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - BaseErrorModel
 struct BaseErrorModel: Codable {
-    let success: Bool
-    let error: BaseError
+    let success: Bool?
+    let error: BaseError?
 }
 
 // MARK: - Error

@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Alamofire
 
 class ConvertCurrencyViewModel {
     
@@ -19,6 +20,7 @@ class ConvertCurrencyViewModel {
     var toCurrencyBehavior = BehaviorRelay<String>(value: "")
     var amountToConvertBehavior = BehaviorRelay<String>(value: "")
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
+    var showAlertBehavior = BehaviorRelay<String>(value: "")
 
     var currenciesModelObservable: Observable<[String]> {
         return currenciesModelSubject
@@ -33,19 +35,17 @@ class ConvertCurrencyViewModel {
         let headers = [
             "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
-        
-        print(headers)
 
         APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             
             if let error = error {
-                
-                print(error.localizedDescription)
+                self.showAlertBehavior.accept(error.localizedDescription)
+               // print(error.localizedDescription)
                 
             } else if let errorModel = errorModel {
-                
-                print(errorModel.error.info)
+                self.showAlertBehavior.accept(errorModel.error?.info ?? "")
+               // print(errorModel.error.info)
                 
             } else {
                 guard let currencies = currenciesModel?.symbols else { return }
@@ -53,13 +53,11 @@ class ConvertCurrencyViewModel {
                 if currencies.count > 0 {
                     self.currenciesModelSubject.onNext(currencies.keys.map({$0}))
                 } else {
-                    
+                    self.showAlertBehavior.accept("There is no data..")
                 }
             }
-
         }
     }
-    
     
     func convertCurrency() {
         loadingBehavior.accept(true)
@@ -73,25 +71,28 @@ class ConvertCurrencyViewModel {
             "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
         
-        APIService.instance.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
+        print("params =" , params)
+        print("headers =" , headers)
+        
+        APIService.instance.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, encoding: URLEncoding.queryString,headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             self.loadingBehavior.accept(false)
-            
             if let error = error {
-                
-                print(error.localizedDescription)
+                self.showAlertBehavior.accept(error.localizedDescription)
+               // print(error.localizedDescription)
                 
             } else if let errorModel = errorModel {
-                
-                print(errorModel.error.info)
+                self.showAlertBehavior.accept(errorModel.error?.info ?? "")
+               // print(errorModel.error.info)
                 
             } else {
-                
                 guard let convertModel = convertModel else { return }
-                if convertModel.success {
-                    self.convertedAmountSubject.onNext(String(convertModel.result))
+                guard let result = convertModel.result else { return }
+                
+                if convertModel.success ?? true {
+                    self.convertedAmountSubject.onNext(String(result))
                 } else {
-                    print("Failed to Convert Amount..")
+                    self.showAlertBehavior.accept("Failed to Convert Amount..")
                 }
             }
         }
