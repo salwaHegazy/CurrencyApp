@@ -12,7 +12,6 @@ struct ConvertModel: Codable {
     let success: Bool
     let query: Query
     let info: Info
-    let historical: String?
     let date: String
     let result: Double
 }
