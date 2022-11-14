@@ -8,9 +8,10 @@
 import Foundation
 import UIKit
 import MBProgressHUD
+import CleanyModal
 
 extension UIViewController {
-    func showIndicator(withTitle title: String , and description: String) {
+    func showIndicator(withTitle title: String? = nil , and description: String? = nil) {
         let indicator = MBProgressHUD.showAdded(to: self.view, animated: true)
         indicator.label.text = title
         indicator.isUserInteractionEnabled = false
@@ -22,6 +23,18 @@ extension UIViewController {
     func hideIndicator() {
         MBProgressHUD.hide(for: self.view, animated: true)
         self.view.isUserInteractionEnabled = true
+    }
+    
+    func showAlert(withTitle: String, andMessage message: String, completion: (() -> Void)? = nil) {
+
+        let alert = AlertViewController( title: withTitle, message: message)
+
+        let okButton = CleanyAlertAction(title: "OK", style: .default) { (_) in
+                    (completion ?? {})()
+        }
+        alert.addAction(okButton)
+
+        present(alert, animated: true, completion: nil)
     }
     
 }

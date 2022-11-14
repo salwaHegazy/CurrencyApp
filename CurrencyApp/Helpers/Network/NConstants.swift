@@ -14,13 +14,15 @@ protocol Endpoint {
 }
 
 enum URLPath {
+    case getAvailableCurrenciesSymbols
     case convertCurrency
 }
 
 extension URLPath: Endpoint {
     var path: String {
         switch self {
-        case .convertCurrency: return fullURL("https://data.fixer.io/api/convert")
+        case .getAvailableCurrenciesSymbols : return fullURL("https://data.fixer.io/api/symbols")
+        case .convertCurrency : return fullURL("https://data.fixer.io/api/convert")
         
         }
     }
