@@ -21,8 +21,8 @@ enum URLPath {
 extension URLPath: Endpoint {
     var path: String {
         switch self {
-        case .getAvailableCurrenciesSymbols : return fullURL("https://data.fixer.io/api/symbols")
-        case .convertCurrency : return fullURL("https://data.fixer.io/api/convert")
+        case .getAvailableCurrenciesSymbols : return fullURL("https://api.apilayer.com/fixer/symbols")
+        case .convertCurrency : return fullURL("https://api.apilayer.com/fixer/convert")
         
         }
     }

@@ -24,19 +24,27 @@ class ConvertCurrencyViewController: UIViewController {
     
     let fromDropDown = DropDown()
     let toDropDown   = DropDown()
-    let currenciesData : [String] = ["AED" , "AFN" , "ALL" , "AMD"]
     let convertCurrencyViewModel = ConvertCurrencyViewModel()
     let disposeBag = DisposeBag()
     
     //MARK: - LifeCycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getAvailableCurrencies()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeToCurrenciesResponse()
         setUpTextFields()
         setUpDropDownViews()
         bindTextFieldsToViewModel()
         subscribeToLoading()
-        subscribeToCurrenciesResponse()
+       
+        
+       // convertCurrencyViewModel.convertCurrency()
         
     }
     
@@ -51,7 +59,7 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     @IBAction func detailsBtnPressed(_ sender: Any) {
-        
+       
     }
     
     @IBAction func swapBtnPressed(_ sender: Any) {
@@ -70,8 +78,6 @@ class ConvertCurrencyViewController: UIViewController {
     func setUpDropDownViews() {
         fromDropDown.anchorView = fromDropDownView
         toDropDown.anchorView   = toDropDownView
-        fromDropDown.dataSource = currenciesData
-        toDropDown.dataSource   = currenciesData
         fromDropDown.direction  = .bottom
         toDropDown.direction    = .bottom
         fromDropDown.bottomOffset = CGPoint(x: 0, y:(fromDropDown.anchorView?.plainView.bounds.height)!)
@@ -85,6 +91,11 @@ class ConvertCurrencyViewController: UIViewController {
             toSelectedTextField.text = item
 
         }
+    }
+    
+    func setUpDropDownsDataSource(_ currencies : [String]) {
+        fromDropDown.dataSource = currencies
+        toDropDown.dataSource   = currencies
     }
     
     func bindTextFieldsToViewModel() {
@@ -104,13 +115,13 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     func subscribeToCurrenciesResponse() {
-//        convertCurrencyViewModel.currenciesModelObservable.subscribe(onNext: {
-//            if $0.success {
-//
-//            } else {
-//
-//            }
-//        }).disposed(by: disposeBag)
+        convertCurrencyViewModel.currenciesModelObservable.subscribe(onNext: { currencies in
+            self.setUpDropDownsDataSource(currencies)
+        }).disposed(by: disposeBag)
+    }
+    
+    func subscribeToConvertCurrenciesResponse() {
+        
     }
     
     func swapCurrencies() {
@@ -122,5 +133,12 @@ class ConvertCurrencyViewController: UIViewController {
             showAlert(withTitle: "Alert", andMessage: "Please Select From And To Currencies Values")
         }
     }
+    
+    func getAvailableCurrencies(){
+        convertCurrencyViewModel.getAvailableCurrencies()
+    }
+    
+    
+    
     
 }

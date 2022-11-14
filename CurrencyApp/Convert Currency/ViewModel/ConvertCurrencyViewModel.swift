@@ -30,7 +30,13 @@ class ConvertCurrencyViewModel {
     
     //MARK: - Methods
     func getAvailableCurrencies() {
-        APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
+        let headers = [
+            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
+        ]
+        
+        print(headers)
+
+        APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             
             if let error = error {
@@ -42,32 +48,32 @@ class ConvertCurrencyViewModel {
                 print(errorModel.error.info)
                 
             } else {
+                guard let currencies = currenciesModel?.symbols else { return }
                 
-//                guard let currenciesModel = currenciesModel else { return }
-//                let symbols = currenciesModel.symbols
-                
-//                if symbols.count > 0 {
-//                    self.CurrenciesModelSubject.onNext(symbols)
-//                } else {
-//                    print("There is no Data")
-//                }
+                if currencies.count > 0 {
+                    self.currenciesModelSubject.onNext(currencies.keys.map({$0}))
+                } else {
+                    
+                }
             }
 
         }
-
     }
     
     
     func convertCurrency() {
         loadingBehavior.accept(true)
         let params = [
-            "access_key" : "" ,
-            "from": fromCurrencyBehavior.value,
             "to": toCurrencyBehavior.value,
-            "amount": amountToConvertBehavior.value,
-            "date" : "YYYY-MM-DD"
+            "from": fromCurrencyBehavior.value,
+            "amount": amountToConvertBehavior.value
         ]
-        APIService.instance.getData(endPoint: URLPath.convertCurrency, method: .get, params: params) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
+        
+        let headers = [
+            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
+        ]
+        
+        APIService.instance.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             self.loadingBehavior.accept(false)
             
