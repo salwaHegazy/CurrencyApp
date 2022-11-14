@@ -32,7 +32,6 @@ class ConvertCurrencyViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAvailableCurrencies()
-        
     }
     
     override func viewDidLoad() {

@@ -6,13 +6,24 @@
 //
 
 import UIKit
+import RxSwift
 
 class DetailsViewController: UIViewController {
-
+    
+    //MARK: - Outlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: - Members
+    let detailsViewModel = DetailsViewModel()
+    let disposeBag = DisposeBag()
+    
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
