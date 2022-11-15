@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "symbols": {
+    "AED": "United Arab Emirates Dirham",
+    "USD": "United States Dollar",
+    "EGP": "Egyption Pound",
+    "SAR": "Saudi Rial"
+  }
+}
+

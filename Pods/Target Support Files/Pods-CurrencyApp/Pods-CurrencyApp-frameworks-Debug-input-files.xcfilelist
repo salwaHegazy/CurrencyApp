@@ -2,7 +2,6 @@ ${PODS_ROOT}/Target Support Files/Pods-CurrencyApp/Pods-CurrencyApp-frameworks.s
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/CleanyModal/CleanyModal.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
-${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework

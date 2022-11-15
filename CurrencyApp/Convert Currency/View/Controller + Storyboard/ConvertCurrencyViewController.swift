@@ -104,6 +104,15 @@ class ConvertCurrencyViewController: UIViewController {
         fromDropDown.bottomOffset = CGPoint(x: 0, y:(fromDropDown.anchorView?.plainView.bounds.height)!)
         toDropDown.bottomOffset   = CGPoint(x: 0, y:(toDropDown.anchorView?.plainView.bounds.height)!)
         
+        // setUp DropDown appearance
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().selectedTextColor = UIColor.blue
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 16)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
+        DropDown.appearance().cellHeight = 50
+        
+        // setup DropDown Selection
         fromDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             fromSelectedTextField.text = item
         }

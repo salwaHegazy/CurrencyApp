@@ -41,7 +41,7 @@
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3d-69-tST">
                                                         <rect key="frame" x="2" y="-2" width="88.666666666666671" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
@@ -57,7 +57,7 @@
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaS-Sw-zW1">
                                                 <rect key="frame" x="0.0" y="40" width="114.66666666666667" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
@@ -94,7 +94,7 @@
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Syj-TA-Thv">
                                                         <rect key="frame" x="2" y="-2" width="88.666666666666671" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
@@ -109,7 +109,7 @@
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="xxxx" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2XF-DF-1e0">
                                                 <rect key="frame" x="0.0" y="40" width="114.66666666666667" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
