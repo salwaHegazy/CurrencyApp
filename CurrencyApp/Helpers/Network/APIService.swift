@@ -8,10 +8,18 @@
 import Foundation
 import Alamofire
 
+enum APIEnvironment {
+    case test
+    case production
+}
+
 class APIService {
-    private init() {}
-    static let instance = APIService()
     
+    private var apiEnvironment : APIEnvironment
+    
+    init (apiEnvironment : APIEnvironment) {
+        self.apiEnvironment = apiEnvironment
+    }
     
     func getData<T: Decodable, E: Decodable>(endPoint: Endpoint, method: HTTPMethod ,params: Parameters? = nil, encoding: ParameterEncoding = JSONEncoding.default ,headers: HTTPHeaders? = nil ,completion: @escaping (T?, E?, Error?)->()) {
         

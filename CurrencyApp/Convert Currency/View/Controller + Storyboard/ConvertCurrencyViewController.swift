@@ -47,10 +47,7 @@ class ConvertCurrencyViewController: UIViewController {
         subscribeToLoading()
         subscribeToConvertCurrenciesResponse()
     }
-    
-//    init() {
-//        // creat object from this controller
-//    }
+   
     
     // MARK: - Actions
     
@@ -89,14 +86,14 @@ class ConvertCurrencyViewController: UIViewController {
         bindAmountTextFieldsToViewModel()
         bindFromSelectedTextFieldToViewModel()
         bindToSelectedTextFieldToViewModel()
-        convertCurrency(fromTxt: "", toTxt: "")
+        convertCurrency()
     }
     
     @objc func startToConvertResult () {
         bindConvertedAmountTextFieldsToViewModel()
         bindFromCurrencyValueToViewModel()
         bindToCurrencyValueToViewModel()
-        convertCurrency(fromTxt: "", toTxt: "")
+        convertCurrency()
     }
     
     func setUpDropDownViews() {
@@ -186,13 +183,7 @@ class ConvertCurrencyViewController: UIViewController {
                 convertedAmountTextField.text = amountTextField.text
                 amountTextField.text = convertedValue
             }
-            
-            if activeTextField == amountTextField {
-                print("AmountTF")
-            } else if activeTextField == convertedAmountTextField {
-                print("ConvertedAmountTF")
-            }
-
+          
         } else {
             showAlert(withTitle: "Alert", andMessage: "Please Select Required Fields...")
         }
@@ -208,7 +199,7 @@ class ConvertCurrencyViewController: UIViewController {
         convertCurrencyViewModel.getAvailableCurrencies()
     }
     
-    func convertCurrency(fromTxt: String? , toTxt : String?) {
+    func convertCurrency() {
         if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true)
             && ( !(amountTextField.text?.isEmpty ?? true) || !(convertedAmountTextField.text?.isEmpty ?? true) ) {
             

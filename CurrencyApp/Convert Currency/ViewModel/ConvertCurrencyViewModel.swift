@@ -30,6 +30,7 @@ class ConvertCurrencyViewModel {
         return convertedAmountSubject
     }
     
+    private var apiService = APIService(apiEnvironment: .test)
     
     //MARK: - Methods
     func getAvailableCurrencies() {
@@ -50,7 +51,7 @@ class ConvertCurrencyViewModel {
             "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
  
-        APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
+        apiService.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             
             if let error = error {
@@ -89,7 +90,9 @@ class ConvertCurrencyViewModel {
         print("params =" , params)
         print("headers =" , headers)
         
-        APIService.instance.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, encoding: URLEncoding.queryString,headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
+        
+        
+        apiService.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, encoding: URLEncoding.queryString,headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             self.loadingBehavior.accept(false)
             if let error = error {
