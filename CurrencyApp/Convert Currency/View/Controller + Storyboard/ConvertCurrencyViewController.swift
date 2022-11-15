@@ -26,7 +26,7 @@ class ConvertCurrencyViewController: UIViewController {
     let toDropDown   = DropDown()
     let convertCurrencyViewModel = ConvertCurrencyViewModel()
     let disposeBag = DisposeBag()
-    lazy var constants = Constants.shared
+    var activeTextField = UITextField()
 
     
     //MARK: - LifeCycle
@@ -43,9 +43,14 @@ class ConvertCurrencyViewController: UIViewController {
         setUpTextFields()
         setUpDropDownViews()
         bindAmountTextFieldsToViewModel()
+        bindConvertedAmountTextFieldsToViewModel()
         subscribeToLoading()
         subscribeToConvertCurrenciesResponse()
     }
+    
+//    init() {
+//        // creat object from this controller
+//    }
     
     // MARK: - Actions
     
@@ -63,7 +68,6 @@ class ConvertCurrencyViewController: UIViewController {
     
     @IBAction func swapBtnPressed(_ sender: Any) {
         swapCurrencies()
-        convertCurrency()
     }
     
     //MARK: - Methods
@@ -75,9 +79,24 @@ class ConvertCurrencyViewController: UIViewController {
     func setUpTextFields() {
         fromSelectedTextField.isUserInteractionEnabled = false
         toSelectedTextField.isUserInteractionEnabled   = false
-        convertedAmountTextField.isUserInteractionEnabled = false
         amountTextField.delegate = self
-       // convertedAmountTextField.delegate = self
+        convertedAmountTextField.delegate = self
+        amountTextField.addTarget(self, action: #selector(startToConvert), for: .editingChanged)
+        convertedAmountTextField.addTarget(self, action: #selector(startToConvertResult), for: .editingChanged)
+    }
+    
+    @objc func startToConvert () {
+        bindAmountTextFieldsToViewModel()
+        bindFromSelectedTextFieldToViewModel()
+        bindToSelectedTextFieldToViewModel()
+        convertCurrency(fromTxt: "", toTxt: "")
+    }
+    
+    @objc func startToConvertResult () {
+        bindConvertedAmountTextFieldsToViewModel()
+        bindFromCurrencyValueToViewModel()
+        bindToCurrencyValueToViewModel()
+        convertCurrency(fromTxt: "", toTxt: "")
     }
     
     func setUpDropDownViews() {
@@ -87,14 +106,13 @@ class ConvertCurrencyViewController: UIViewController {
         toDropDown.direction    = .bottom
         fromDropDown.bottomOffset = CGPoint(x: 0, y:(fromDropDown.anchorView?.plainView.bounds.height)!)
         toDropDown.bottomOffset   = CGPoint(x: 0, y:(toDropDown.anchorView?.plainView.bounds.height)!)
+        
         fromDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             fromSelectedTextField.text = item
-            bindFromSelectedTextFieldToViewModel()
         }
 
         toDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             toSelectedTextField.text = item
-            bindToSelectedTextFieldToViewModel()
         }
     }
     
@@ -107,12 +125,24 @@ class ConvertCurrencyViewController: UIViewController {
         amountTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.amountToConvertBehavior).disposed(by: disposeBag)
     }
     
+    func bindConvertedAmountTextFieldsToViewModel() {
+        convertedAmountTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.amountToConvertBehavior).disposed(by: disposeBag)
+    }
+    
     func bindFromSelectedTextFieldToViewModel() {
         fromSelectedTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.fromCurrencyBehavior).disposed(by: disposeBag)
     }
     
     func bindToSelectedTextFieldToViewModel() {
         toSelectedTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.toCurrencyBehavior).disposed(by: disposeBag)
+    }
+    
+    func bindFromCurrencyValueToViewModel() {
+        toSelectedTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.fromCurrencyBehavior).disposed(by: disposeBag)
+    }
+    
+    func bindToCurrencyValueToViewModel() {
+        fromSelectedTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.toCurrencyBehavior).disposed(by: disposeBag)
     }
     
     func subscribeToLoading() {
@@ -129,7 +159,7 @@ class ConvertCurrencyViewController: UIViewController {
     func subscribeToShowAlert() {
         convertCurrencyViewModel.showAlertBehavior.subscribe(onNext: { [weak self] message in
            guard let self = self else { return }
-            self.showAlert(withTitle: self.constants.alertTitle, andMessage: message)
+            self.showAlert(withTitle: "Alert" , andMessage: message)
         }).disposed(by: disposeBag)
     }
     
@@ -150,8 +180,21 @@ class ConvertCurrencyViewController: UIViewController {
             guard let toSelectedText = toSelectedTextField.text else { return }
             toSelectedTextField.text = fromSelectedTextField.text
             fromSelectedTextField.text = toSelectedText
+            
+            if !(amountTextField.text?.isEmpty ?? true) || !(convertedAmountTextField.text?.isEmpty ?? true) {
+                guard let convertedValue = convertedAmountTextField.text else { return }
+                convertedAmountTextField.text = amountTextField.text
+                amountTextField.text = convertedValue
+            }
+            
+            if activeTextField == amountTextField {
+                print("AmountTF")
+            } else if activeTextField == convertedAmountTextField {
+                print("ConvertedAmountTF")
+            }
+
         } else {
-            showAlert(withTitle: constants.alertTitle, andMessage: constants.EmptyCurrenciesAlertMessage)
+            showAlert(withTitle: "Alert", andMessage: "Please Select Required Fields...")
         }
     }
     
@@ -165,23 +208,38 @@ class ConvertCurrencyViewController: UIViewController {
         convertCurrencyViewModel.getAvailableCurrencies()
     }
     
-    func convertCurrency() {
-        convertCurrencyViewModel.convertCurrency()
+    func convertCurrency(fromTxt: String? , toTxt : String?) {
+        if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true)
+            && ( !(amountTextField.text?.isEmpty ?? true) || !(convertedAmountTextField.text?.isEmpty ?? true) ) {
+            
+            convertCurrencyViewModel.convertCurrency()
+            
+        } else {
+            
+            showAlert(withTitle: "Alert", andMessage: "Please Select Required Fields...")
+        }
     }
 }
 
 //MARK: - UITextField Delegate
 extension ConvertCurrencyViewController : UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true) {
-            convertCurrency()
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        if textField == amountTextField {
+            convertedAmountTextField.text = ""
+            bindFromCurrencyValueToViewModel()
+            bindToCurrencyValueToViewModel()
         } else {
-            showAlert(withTitle: constants.alertTitle, andMessage: constants.EmptyCurrenciesAlertMessage)
+            amountTextField.text = ""
+            bindFromCurrencyValueToViewModel()
+            bindToCurrencyValueToViewModel()
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        convertedAmountTextField.text = ""
-        amountTextField.text = "1"
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+            if textField.text == "0" {
+                textField.text = "1"
+            }
     }
+    
 }

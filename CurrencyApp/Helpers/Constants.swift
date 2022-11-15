@@ -11,5 +11,5 @@ class Constants {
     static let shared = Constants()
     var apiKey =  "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
     var alertTitle = "Alert"
-    var EmptyCurrenciesAlertMessage = "Please Select From And To Currencies "
+    var EmptyFieldsAlertMessage = "Please Select Required Fields..."
 }

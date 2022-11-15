@@ -30,14 +30,26 @@ class ConvertCurrencyViewModel {
         return convertedAmountSubject
     }
     
-    lazy var constants = Constants.shared
     
     //MARK: - Methods
     func getAvailableCurrencies() {
+        let decoder = JSONDecoder()
+        if let currenciesFileUrl  = Bundle.main.url(forResource: "currencies_list", withExtension: "json"),
+           let data = try? Data.init(contentsOf: currenciesFileUrl),
+           let currenciesModel = try? decoder.decode(AvailableCurrenciesModel.self, from: data){
+            guard let currencies = currenciesModel.symbols else { return }
+            
+            if currencies.count > 0 {
+                self.currenciesModelSubject.onNext(currencies.keys.map({$0}))
+            } else {
+                self.showAlertBehavior.accept("There is no data..")
+            }
+        }
+/*
         let headers = [
-            "apikey" : constants.apiKey
+            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
-
+ 
         APIService.instance.getData(endPoint: URLPath.getAvailableCurrenciesSymbols, method: .get, headers: headers ) { [weak self] (currenciesModel: AvailableCurrenciesModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }
             
@@ -59,6 +71,7 @@ class ConvertCurrencyViewModel {
                 }
             }
         }
+ */
     }
     
     func convertCurrency() {
@@ -70,7 +83,7 @@ class ConvertCurrencyViewModel {
         ]
         
         let headers = [
-            "apikey" : constants.apiKey
+            "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
         
         print("params =" , params)
