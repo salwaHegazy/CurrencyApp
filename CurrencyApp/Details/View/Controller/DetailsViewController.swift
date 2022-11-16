@@ -24,6 +24,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
+        detailsViewModel.getHistoricalData()
 
     }
     
