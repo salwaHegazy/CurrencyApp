@@ -12,25 +12,23 @@ import RxSwift
 class ConvertCurrencyViewController: UIViewController {
     
     //MARK: - Outlets
-    
     @IBOutlet weak var fromDropDownView: UIView!
     @IBOutlet weak var toDropDownView: UIView!
     @IBOutlet weak var fromSelectedTextField: UITextField!
     @IBOutlet weak var toSelectedTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var convertedAmountTextField: UITextField!
+    @IBOutlet weak var swapButton: UIButton!
+    @IBOutlet weak var detailsButton: UIButton!
     
+
     //MARK: - Members
-    
     let fromDropDown = DropDown()
     let toDropDown   = DropDown()
     let convertCurrencyViewModel = ConvertCurrencyViewModel()
     let disposeBag = DisposeBag()
-    var activeTextField = UITextField()
 
-    
     //MARK: - LifeCycle
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAvailableCurrencies()
@@ -47,10 +45,8 @@ class ConvertCurrencyViewController: UIViewController {
         subscribeToLoading()
         subscribeToConvertCurrenciesResponse()
     }
-   
     
     // MARK: - Actions
-    
     @IBAction func fromDropdownBtnPressed(_ sender: Any) {
         fromDropDown.show()
     }
@@ -64,13 +60,13 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     @IBAction func swapBtnPressed(_ sender: Any) {
-        swapCurrencies()
+        swapCurrencies(fromTextFieldTxt: fromSelectedTextField.text, toTextFieldTxt: toSelectedTextField.text,
+                       amountTextFieldTxt: amountTextField.text, convertedAmountTextFieldTxt: convertedAmountTextField.text)
     }
     
     //MARK: - Methods
-    
     func setUpNavigationBar() {
-        navigationItem.title = "Convert Currency"
+        self.title = "Convert Currency"
     }
     
     func setUpTextFields() {
@@ -122,7 +118,7 @@ class ConvertCurrencyViewController: UIViewController {
         }
     }
     
-    func setUpDropDownsDataSource(_ currencies : [String]) {
+    func setUpDropDownListsDataSource(_ currencies : [String]) {
         fromDropDown.dataSource = currencies
         toDropDown.dataSource   = currencies
     }
@@ -171,7 +167,7 @@ class ConvertCurrencyViewController: UIViewController {
     
     func subscribeToCurrenciesResponse() {
         convertCurrencyViewModel.currenciesModelObservable.subscribe(onNext: { currencies in
-           self.setUpDropDownsDataSource(currencies)
+           self.setUpDropDownListsDataSource(currencies)
         }).disposed(by: disposeBag)
     }
     
@@ -181,15 +177,17 @@ class ConvertCurrencyViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    func swapCurrencies() {
+    func swapCurrencies(fromTextFieldTxt : String? , toTextFieldTxt : String? ,
+                        amountTextFieldTxt : String? , convertedAmountTextFieldTxt : String?) {
+        
         if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true) {
-            guard let toSelectedText = toSelectedTextField.text else { return }
-            toSelectedTextField.text = fromSelectedTextField.text
+            guard let toSelectedText = toTextFieldTxt else { return }
+            toSelectedTextField.text = fromTextFieldTxt
             fromSelectedTextField.text = toSelectedText
             
             if !(amountTextField.text?.isEmpty ?? true) || !(convertedAmountTextField.text?.isEmpty ?? true) {
-                guard let convertedValue = convertedAmountTextField.text else { return }
-                convertedAmountTextField.text = amountTextField.text
+                guard let convertedValue = convertedAmountTextFieldTxt else { return }
+                convertedAmountTextField.text = amountTextFieldTxt
                 amountTextField.text = convertedValue
             }
           
@@ -224,7 +222,6 @@ class ConvertCurrencyViewController: UIViewController {
 //MARK: - UITextField Delegate
 extension ConvertCurrencyViewController : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
         if textField == amountTextField {
             convertedAmountTextField.text = ""
             bindFromCurrencyValueToViewModel()

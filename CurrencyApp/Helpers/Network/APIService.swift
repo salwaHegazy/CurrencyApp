@@ -8,13 +8,20 @@
 import Foundation
 import Alamofire
 
+
+protocol APIServiceProtocol {
+    var isGetDataCalled:Bool {get set}
+    func getData<T: Decodable, E: Decodable>(endPoint: Endpoint, method: HTTPMethod ,params: Parameters?, encoding: ParameterEncoding,headers: HTTPHeaders?,completion: @escaping (T?, E?, Error?)->())
+}
+
 enum APIEnvironment {
-    case test
+    case development
     case production
 }
 
-class APIService {
+class APIService :  APIServiceProtocol {
     
+    var isGetDataCalled: Bool = false
     private var apiEnvironment : APIEnvironment
     
     init (apiEnvironment : APIEnvironment) {

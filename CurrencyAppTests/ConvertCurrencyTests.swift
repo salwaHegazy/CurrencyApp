@@ -6,41 +6,42 @@
 //
 
 import XCTest
+@testable import CurrencyApp
 
 class ConvertCurrencyTests: XCTestCase {
+    
+    var sut : ConvertCurrencyViewController!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
-    func testGetCurrenciesList() throws {
+        let storyboard = UIStoryboard(name: "ConvertCurrency", bundle: nil)
         
+        sut = storyboard.instantiateViewController(withIdentifier: "ConvertCurrencyViewController") as? ConvertCurrencyViewController
+        
+        sut.loadViewIfNeeded()
+    }
+     
+    func testSetUpFromDropDownListData() throws {
+        let currencies = ["AED" , "USD" , "EGP" ,"SAR"]
+        sut.setUpDropDownListsDataSource(currencies)
+        XCTAssertEqual(sut.fromDropDown.dataSource, currencies)
+    }
+
+    func testSetUpToDropDownListData() throws {
+        let currencies = ["USD" , "EGP" ]
+        sut.setUpDropDownListsDataSource(currencies)
+        XCTAssertEqual(sut.toDropDown.dataSource, currencies)
     }
     
-    func testConvertCurrency() throws {
-        // initiazlize object from controller
-        //create frow w to text
-        //
+    func testSwapCurrencies() throws {
+        sut.swapCurrencies(fromTextFieldTxt: "USD", toTextFieldTxt: "EGP", amountTextFieldTxt: "1", convertedAmountTextFieldTxt: "24.48")
+        XCTAssertEqual(sut.fromSelectedTextField.text, "EGP")
+        XCTAssertEqual(sut.toSelectedTextField.text, "USD")
+        XCTAssertEqual(sut.amountTextField.text, "24.48")
+        XCTAssertEqual(sut.convertedAmountTextField.text, "1")
     }
     
+    override func tearDownWithError() throws {
+        sut = nil
+    }
 
 }
