@@ -10,7 +10,7 @@ import Foundation
 // MARK: - HistoricalRatesModel
 struct HistoricalRatesModel: Codable {
     let base, endDate: String
-    let rates: [String: Double]?
+    let rates: [String: Rate]
     let startDate: String
     let success, timeseries: Bool
 
@@ -21,5 +21,17 @@ struct HistoricalRatesModel: Codable {
         case startDate = "start_date"
         case success, timeseries
     }
+}
+
+// MARK: - Rate
+struct Rate: Codable {
+    let aud, cad, usd: Double
+
+    enum CodingKeys: String, CodingKey {
+        case aud = "AUD"
+        case cad = "CAD"
+        case usd = "USD"
+    }
+    
 }
 

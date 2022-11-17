@@ -15,23 +15,52 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Members
+    let historicalDataTableViewCell = "HistoricalDataTableViewCell"
     let detailsViewModel = DetailsViewModel()
     let disposeBag = DisposeBag()
     
-    
     //MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        detailsViewModel.getHistoricalData()
-
+        setupTableView()
+        subscribeToLoading()
+        subscribeToResponse()
+        getHistoricalData()
     }
     
     //MARK: - Methods
     func setUpNavigationBar() {
-        navigationItem.title = "Historical Data"
+        self.title = "Historical Data"
     }
     
+    func setupTableView() {
+        tableView.register(UINib(nibName: historicalDataTableViewCell, bundle: nil), forCellReuseIdentifier: historicalDataTableViewCell)
+    }
+    
+    func subscribeToLoading() {
+        detailsViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showIndicator(withTitle: "", and: "")
+            } else {
+                self.hideIndicator()
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func subscribeToResponse() {
+        self.detailsViewModel.historicalDataModelObservable
+            .bind(to: self.tableView
+                .rx
+                .items(cellIdentifier: historicalDataTableViewCell,
+                       cellType: HistoricalDataTableViewCell.self)) { row, currencyRates, cell in
+                cell.configCell(data: currencyRates)
+                
+        }
+        .disposed(by: disposeBag)
+    }
 
+    func getHistoricalData() {
+        detailsViewModel.getHistoricalData()
+    }
 }

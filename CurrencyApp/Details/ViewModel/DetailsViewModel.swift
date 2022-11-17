@@ -16,22 +16,28 @@ class DetailsViewModel {
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
     var showAlertBehavior = BehaviorRelay<String>(value: "")
     
-    private var historicalDataModelSubject = PublishSubject<[String]>()
+    private var historicalDataModelSubject = PublishSubject<[CurrencyModel]>()
     
-    var historicalDataModelObservable: Observable<[String]> {
+    var historicalDataModelObservable: Observable<[CurrencyModel]> {
         return historicalDataModelSubject
     }
     
     //MARK: - Methods
     func getHistoricalData() {
+        loadingBehavior.accept(true)
         let decoder = JSONDecoder()
-        if let currenciesFileUrl  = Bundle.main.url(forResource: "historical_data", withExtension: "json"),
-           let data = try? Data.init(contentsOf: currenciesFileUrl),
+        if let historicalDataFileUrl  = Bundle.main.url(forResource: "historical_data", withExtension: "json"),
+           let data = try? Data.init(contentsOf: historicalDataFileUrl),
            let historicalDataModel = try? decoder.decode(HistoricalRatesModel.self, from: data){
-            guard let rates = historicalDataModel.rates else { return }
-            print(rates)
-            if rates.count > 0 {
-                self.historicalDataModelSubject.onNext(rates.keys.map({$0}))
+            self.loadingBehavior.accept(false)
+            let historicalRates = historicalDataModel.rates
+            if historicalRates.count > 0 {
+                var currenciesRates = [CurrencyModel]()
+                for (key, value) in historicalRates {
+                    let currency = CurrencyModel(currencyName: key, rate: value)
+                    currenciesRates.append(currency)
+                }
+                self.historicalDataModelSubject.onNext(currenciesRates)
             } else {
                 self.showAlertBehavior.accept("There is no data..")
             }
