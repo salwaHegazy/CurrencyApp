@@ -31,7 +31,7 @@ class ConvertCurrencyTests: XCTestCase {
         sut.setUpDropDownListsDataSource(currencies)
         XCTAssertEqual(sut.toDropDown.dataSource, currencies)
     }
-    
+   /*
     func testSwapCurrencies() throws {
         sut.swapCurrencies(fromTextFieldTxt: "USD", toTextFieldTxt: "EGP", amountTextFieldTxt: "1", convertedAmountTextFieldTxt: "24.48")
         XCTAssertEqual(sut.fromSelectedTextField.text, "EGP")
@@ -39,7 +39,7 @@ class ConvertCurrencyTests: XCTestCase {
         XCTAssertEqual(sut.amountTextField.text, "24.48")
         XCTAssertEqual(sut.convertedAmountTextField.text, "1")
     }
-    
+    */
     override func tearDownWithError() throws {
         sut = nil
     }
