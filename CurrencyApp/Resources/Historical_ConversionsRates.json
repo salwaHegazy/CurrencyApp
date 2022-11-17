@@ -1,0 +1,12 @@
+{
+  "base": "EGP",
+  "date": "2013-12-24",
+  "historical": true,
+  "rates": {
+    "CAD": 1.739516,
+    "EUR": 1.196476,
+    "USD": 1.636492
+  },
+  "success": true,
+  "timestamp": 1387929599
+}

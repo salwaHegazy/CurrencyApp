@@ -10,16 +10,21 @@ import RxCocoa
 import RxSwift
 import Alamofire
 
-class DetailsViewModel {
+class HistoricalDataViewModel {
     
     //MARK: - Members
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
     var showAlertBehavior = BehaviorRelay<String>(value: "")
     
     private var historicalDataModelSubject = PublishSubject<[CurrencyModel]>()
+    private var historicalConversionsRatesSubject = PublishSubject<[CurrencyRateModel]>()
     
     var historicalDataModelObservable: Observable<[CurrencyModel]> {
         return historicalDataModelSubject
+    }
+    
+    var historicalConversionsRatesObservable: Observable<[CurrencyRateModel]> {
+        return historicalConversionsRatesSubject
     }
     
     //MARK: - Methods

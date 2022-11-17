@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class DetailsViewController: UIViewController {
+class HistoricalDataViewController: UIViewController {
     
     //MARK: - Outlets
     
@@ -16,7 +16,7 @@ class DetailsViewController: UIViewController {
     
     //MARK: - Members
     let historicalDataTableViewCell = "HistoricalDataTableViewCell"
-    let detailsViewModel = DetailsViewModel()
+    let historicalDataViewModel = HistoricalDataViewModel()
     let disposeBag = DisposeBag()
     
     //MARK: - LifeCycle
@@ -27,6 +27,7 @@ class DetailsViewController: UIViewController {
         subscribeToLoading()
         subscribeToResponse()
         getHistoricalData()
+        historicalDataViewModel.getHistoricalConversionsRatesData()
     }
     
     //MARK: - Methods
@@ -39,7 +40,7 @@ class DetailsViewController: UIViewController {
     }
     
     func subscribeToLoading() {
-        detailsViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
+        historicalDataViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
             if isLoading {
                 self.showIndicator(withTitle: "", and: "")
             } else {
@@ -49,7 +50,7 @@ class DetailsViewController: UIViewController {
     }
     
     func subscribeToResponse() {
-        self.detailsViewModel.historicalDataModelObservable
+        self.historicalDataViewModel.historicalDataModelObservable
             .bind(to: self.tableView
                 .rx
                 .items(cellIdentifier: historicalDataTableViewCell,
@@ -61,6 +62,6 @@ class DetailsViewController: UIViewController {
     }
 
     func getHistoricalData() {
-        detailsViewModel.getHistoricalData()
+        historicalDataViewModel.getHistoricalData()
     }
 }
