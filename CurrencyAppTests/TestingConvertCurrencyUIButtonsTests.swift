@@ -34,12 +34,32 @@ class TestingConvertCurrencyUIButtonsTests: XCTestCase {
         let detailsButton: UIButton = sut.detailsButton
         
         guard let detailsButtonActions = detailsButton.actions(forTarget: sut, forControlEvent: .touchUpInside) else {
-            XCTFail("UIButton does not have actions assigned for Control Event .touchUpInside")
+            XCTFail("DetailsButton does not have actions assigned for Control Event .touchUpInside")
             return
         }
         XCTAssertTrue(detailsButtonActions.contains("detailsBtnPressed:"))
     }
-
+    
+    func testIfHistoricalDataButtonHasActionAssigned() {
+        let historicalDataButton: UIButton = sut.historicalDataButton
+        
+        guard let historicalDataButtonActions = historicalDataButton.actions(forTarget: sut, forControlEvent: .touchUpInside) else {
+            XCTFail("HistoricalDataButton does not have actions assigned for Control Event .touchUpInside")
+            return
+        }
+        XCTAssertTrue(historicalDataButtonActions.contains("historicalDataBtnPressed:"))
+    }
+    
+    func testIfConversionsRatesButtonHasActionAssigned() {
+        let conversionsRatesButton: UIButton = sut.conversionsRatesButton
+        
+        guard let conversionsRatesButtonActions = conversionsRatesButton.actions(forTarget: sut, forControlEvent: .touchUpInside) else {
+            XCTFail("ConversionsRatesButton does not have actions assigned for Control Event .touchUpInside")
+            return
+        }
+        XCTAssertTrue(conversionsRatesButtonActions.contains("conversionsRatesBtnPressed:"))
+    }
+    
     override func tearDownWithError() throws {
         sut = nil
     }
