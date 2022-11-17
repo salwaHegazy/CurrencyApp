@@ -17,6 +17,8 @@
 		35A154392926679E0032D308 /* HistoricalConversionsRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A154382926679E0032D308 /* HistoricalConversionsRatesModel.swift */; };
 		35A1543D29266AE20032D308 /* Historical_ConversionsRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 35A1543C29266AE20032D308 /* Historical_ConversionsRates.json */; };
 		35A4DD032926D52400C69432 /* CurrencyRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4DD022926D52400C69432 /* CurrencyRateModel.swift */; };
+		35A4DD092926E5FD00C69432 /* ConversionsRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4DD082926E5FD00C69432 /* ConversionsRatesViewController.swift */; };
+		35A4DD0B2926E62700C69432 /* ConversionsRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4DD0A2926E62700C69432 /* ConversionsRatesViewModel.swift */; };
 		35AB09172924D8EF002E438E /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB09162924D8EF002E438E /* MockApiService.swift */; };
 		35AB091B2924DC75002E438E /* ConvertCurrencyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB091A2924DC75002E438E /* ConvertCurrencyViewModelTests.swift */; };
 		35AFDF88292121C800D3395B /* ConvertCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFDF87292121C800D3395B /* ConvertCurrencyViewController.swift */; };
@@ -62,6 +64,8 @@
 		35A154382926679E0032D308 /* HistoricalConversionsRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConversionsRatesModel.swift; sourceTree = "<group>"; };
 		35A1543C29266AE20032D308 /* Historical_ConversionsRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Historical_ConversionsRates.json; sourceTree = "<group>"; };
 		35A4DD022926D52400C69432 /* CurrencyRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateModel.swift; sourceTree = "<group>"; };
+		35A4DD082926E5FD00C69432 /* ConversionsRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsRatesViewController.swift; sourceTree = "<group>"; };
+		35A4DD0A2926E62700C69432 /* ConversionsRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsRatesViewModel.swift; sourceTree = "<group>"; };
 		35AB09162924D8EF002E438E /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		35AB091A2924DC75002E438E /* ConvertCurrencyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCurrencyViewModelTests.swift; sourceTree = "<group>"; };
 		35AFDF87292121C800D3395B /* ConvertCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCurrencyViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 		35A4DD052926E46900C69432 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				35A4DD022926D52400C69432 /* CurrencyRateModel.swift */,
+				35A154382926679E0032D308 /* HistoricalConversionsRatesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +187,7 @@
 		35A4DD062926E47200C69432 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				35A4DD0A2926E62700C69432 /* ConversionsRatesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 		35A4DD072926E47E00C69432 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35A4DD082926E5FD00C69432 /* ConversionsRatesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -251,9 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				35A1543629263E700032D308 /* CurrencyModel.swift */,
-				35A4DD022926D52400C69432 /* CurrencyRateModel.swift */,
 				35F6DA5D29255CFC006F9419 /* HistoricalRatesModel.swift */,
-				35A154382926679E0032D308 /* HistoricalConversionsRatesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -562,7 +568,9 @@
 				35E10406292109AB005335FF /* AppDelegate.swift in Sources */,
 				35F6DA6529256E62006F9419 /* HistoricalDataTableViewCell.swift in Sources */,
 				35E10408292109AB005335FF /* SceneDelegate.swift in Sources */,
+				35A4DD0B2926E62700C69432 /* ConversionsRatesViewModel.swift in Sources */,
 				355FEF4429217AA7000E0E20 /* UIViewController + Extension.swift in Sources */,
+				35A4DD092926E5FD00C69432 /* ConversionsRatesViewController.swift in Sources */,
 				35A1543729263E700032D308 /* CurrencyModel.swift in Sources */,
 				35AFDF88292121C800D3395B /* ConvertCurrencyViewController.swift in Sources */,
 				355FEF3F29216E87000E0E20 /* NConstants.swift in Sources */,

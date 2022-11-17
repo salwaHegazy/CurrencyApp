@@ -184,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702.89855072463774" y="61.607142857142854"/>
+            <point key="canvasLocation" x="-958" y="72"/>
         </scene>
         <!--Historical Data View Controller-->
         <scene sceneID="XbJ-w5-2qv">
@@ -227,12 +227,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNt-S7-8gw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460.8695652173915" y="60.9375"/>
+            <point key="canvasLocation" x="-193" y="72"/>
         </scene>
-        <!--View Controller-->
+        <!--Conversions Rates View Controller-->
         <scene sceneID="0eC-AF-Skd">
             <objects>
-                <viewController id="h6O-j1-L3C" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversionsRatesViewController" id="h6O-j1-L3C" customClass="ConversionsRatesViewController" customModule="CurrencyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="adS-lO-8T1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -242,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItP-do-J7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2216" y="62"/>
+            <point key="canvasLocation" x="535" y="72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lUK-sW-ACs">
@@ -262,7 +262,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUr-D3-pNS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8.6956521739130448" y="61.607142857142854"/>
+            <point key="canvasLocation" x="-1726" y="72"/>
         </scene>
     </scenes>
     <resources>

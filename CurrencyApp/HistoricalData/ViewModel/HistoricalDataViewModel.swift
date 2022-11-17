@@ -17,14 +17,9 @@ class HistoricalDataViewModel {
     var showAlertBehavior = BehaviorRelay<String>(value: "")
     
     private var historicalDataModelSubject = PublishSubject<[CurrencyModel]>()
-    private var historicalConversionsRatesSubject = PublishSubject<[CurrencyRateModel]>()
     
     var historicalDataModelObservable: Observable<[CurrencyModel]> {
         return historicalDataModelSubject
-    }
-    
-    var historicalConversionsRatesObservable: Observable<[CurrencyRateModel]> {
-        return historicalConversionsRatesSubject
     }
     
     //MARK: - Methods
@@ -48,5 +43,4 @@ class HistoricalDataViewModel {
             }
         }
     }
-    
 }

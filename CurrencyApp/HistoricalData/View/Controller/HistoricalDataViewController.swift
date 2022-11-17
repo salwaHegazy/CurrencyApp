@@ -27,7 +27,6 @@ class HistoricalDataViewController: UIViewController {
         subscribeToLoading()
         subscribeToResponse()
         getHistoricalData()
-        historicalDataViewModel.getHistoricalConversionsRatesData()
     }
     
     //MARK: - Methods
