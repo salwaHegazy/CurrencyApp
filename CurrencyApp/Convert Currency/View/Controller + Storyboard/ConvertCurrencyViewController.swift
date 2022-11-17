@@ -20,8 +20,9 @@ class ConvertCurrencyViewController: UIViewController {
     @IBOutlet weak var convertedAmountTextField: UITextField!
     @IBOutlet weak var swapButton: UIButton!
     @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var historicalDataButton: UIButton!
+    @IBOutlet weak var conversionsRatesButton: UIButton!
     
-
     //MARK: - Members
     let fromDropDown = DropDown()
     let toDropDown   = DropDown()
@@ -40,6 +41,7 @@ class ConvertCurrencyViewController: UIViewController {
         subscribeToCurrenciesResponse()
         setUpTextFields()
         setUpDropDownViews()
+        setUpOptionsButton()
         bindAmountTextFieldsToViewModel()
         bindConvertedAmountTextFieldsToViewModel()
         subscribeToLoading()
@@ -56,12 +58,20 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     @IBAction func detailsBtnPressed(_ sender: Any) {
-        navigateToDetailsViewController()
+        showOptionsButtonsToNavigate()
     }
-    
+   
     @IBAction func swapBtnPressed(_ sender: Any) {
         swapCurrencies(fromTextFieldTxt: fromSelectedTextField.text, toTextFieldTxt: toSelectedTextField.text,
                        amountTextFieldTxt: amountTextField.text, convertedAmountTextFieldTxt: convertedAmountTextField.text)
+    }
+    
+    @IBAction func historicalDataBtnPressed(_ sender: Any) {
+        navigateToHistoricalDataViewController()
+    }
+    
+    @IBAction func conversionsRatesBtnPressed(_ sender: Any) {
+        navigateToConversionsRatesViewController()
     }
     
     //MARK: - Methods
@@ -121,6 +131,11 @@ class ConvertCurrencyViewController: UIViewController {
     func setUpDropDownListsDataSource(_ currencies : [String]) {
         fromDropDown.dataSource = currencies
         toDropDown.dataSource   = currencies
+    }
+    
+    func setUpOptionsButton() {
+        historicalDataButton.isHidden = true
+        conversionsRatesButton.isHidden = true
     }
     
     func bindAmountTextFieldsToViewModel() {
@@ -196,9 +211,20 @@ class ConvertCurrencyViewController: UIViewController {
         }
     }
     
-    func navigateToDetailsViewController() {
-        if let detailsVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
-           self.navigationController?.pushViewController(detailsVC, animated: true)
+    func showOptionsButtonsToNavigate() {
+        historicalDataButton.isHidden = false
+        conversionsRatesButton.isHidden = false
+    }
+    
+    func navigateToHistoricalDataViewController() {
+        if let historicalDataVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "HistoricalDataViewController") as? HistoricalDataViewController {
+           self.navigationController?.pushViewController(historicalDataVC, animated: true)
+        }
+    }
+    
+    func navigateToConversionsRatesViewController() {
+        if let conversionsRatesVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "ConversionsRatesViewController") as? ConversionsRatesViewController {
+           self.navigationController?.pushViewController(conversionsRatesVC, animated: true)
         }
     }
     

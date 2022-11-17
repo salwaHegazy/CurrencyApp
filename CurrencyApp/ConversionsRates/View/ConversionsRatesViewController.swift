@@ -28,7 +28,7 @@ class ConversionsRatesViewController: UIViewController {
 
     //MARK: - Methods
     func setUpNavigationBar() {
-        self.title = "Historical Data"
+        self.title = "Conversions Rates"
     }
     
     func subscribeToLoading() {

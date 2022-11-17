@@ -145,6 +145,9 @@
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="historicalDataBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lZF-8Z-TbV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtj-kh-FIT">
                                         <rect key="frame" x="0.0" y="75.666666666666686" width="184" height="35.666666666666657"/>
@@ -154,6 +157,9 @@
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="conversionsRatesBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Eri-cr-bgO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -173,10 +179,12 @@
                     <navigationItem key="navigationItem" id="Leg-Nc-ffd"/>
                     <connections>
                         <outlet property="amountTextField" destination="xaS-Sw-zW1" id="z9n-YA-8gC"/>
+                        <outlet property="conversionsRatesButton" destination="Jtj-kh-FIT" id="Bv1-J6-auV"/>
                         <outlet property="convertedAmountTextField" destination="2XF-DF-1e0" id="knb-M4-4NL"/>
                         <outlet property="detailsButton" destination="11j-Q2-4PG" id="URI-bc-GSS"/>
                         <outlet property="fromDropDownView" destination="tjl-OK-sPS" id="Yhz-7o-RsH"/>
                         <outlet property="fromSelectedTextField" destination="Z3d-69-tST" id="qRl-va-BpC"/>
+                        <outlet property="historicalDataButton" destination="VqX-5T-Hep" id="RxK-5n-9WD"/>
                         <outlet property="swapButton" destination="enp-VH-4P0" id="k76-U0-Te3"/>
                         <outlet property="toDropDownView" destination="AzT-7d-VAZ" id="odr-Hl-h73"/>
                         <outlet property="toSelectedTextField" destination="Syj-TA-Thv" id="yZO-xZ-OdS"/>
