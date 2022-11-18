@@ -23,11 +23,20 @@ class ConversionsRatesViewController: UIViewController {
     let conversionsRatesViewModel = ConversionsRatesViewModel()
     let disposeBag = DisposeBag()
     
+    private lazy var datePicker: UIDatePicker = {
+      let datePicker = UIDatePicker(frame: .zero)
+      datePicker.datePickerMode = .date
+      datePicker.timeZone = TimeZone.current
+      datePicker.preferredDatePickerStyle = .inline
+      return datePicker
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
         setupTableView()
+        setupTextFields()
         bindBaseCurrencyNameTextFieldToViewModel()
         bindDateTextFieldToViewModel()
         bindToHiddenTable()
@@ -35,6 +44,7 @@ class ConversionsRatesViewController: UIViewController {
         subscribeIsGetConversionsRateButtonEnabled()
         subscribeToResponse()
         subscribeToGetConversionsRatesButton()
+        hideKeyboardWhenTappedAround()
     }
     
     //MARK: - Methods
@@ -44,6 +54,25 @@ class ConversionsRatesViewController: UIViewController {
     
     func setupTableView() {
         tableView.register(UINib(nibName: conversionsRatesTableViewCell, bundle: nil), forCellReuseIdentifier: conversionsRatesTableViewCell)
+    }
+    
+    func setupTextFields() {
+        baseCurrencyNameTextField.addTarget(self, action: #selector(hideTableView), for: .editingChanged)
+
+        dateTextField.addTarget(self, action: #selector(hideTableView), for: .editingChanged)
+        
+        dateTextField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+    }
+    
+    @objc func hideTableView() {
+        containerView.isHidden = true
+    }
+    
+    @objc func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/M/yyyy"
+        dateTextField.text = dateFormatter.string(from: sender.date)
     }
 
     func bindBaseCurrencyNameTextFieldToViewModel() {
@@ -85,7 +114,7 @@ class ConversionsRatesViewController: UIViewController {
     
     func subscribeToGetConversionsRatesButton() {
         getConversionsRatesButton.rx.tap
-            .throttle(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .throttle(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self](_) in
                 guard let self = self else { return }
                 self.conversionsRatesViewModel.getHistoricalConversionsRatesData()
@@ -96,3 +125,5 @@ class ConversionsRatesViewController: UIViewController {
         conversionsRatesViewModel.getHistoricalConversionsRatesData()
     }
 }
+
+

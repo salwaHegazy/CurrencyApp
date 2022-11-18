@@ -48,6 +48,7 @@ class ConvertCurrencyViewController: UIViewController {
         subscribeToLoading()
         subscribeIsSwapCurrenciesButtonEnabled()
         subscribeToConvertCurrenciesResponse()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: - Actions
