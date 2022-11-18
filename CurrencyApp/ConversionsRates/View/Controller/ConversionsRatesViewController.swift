@@ -28,22 +28,15 @@ class ConversionsRatesViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigationBar()
         setupTableView()
-        setContainerTableViewIsHidden(isHidden: true)
         bindBaseCurrencyNameTextFieldToViewModel()
         bindDateTextFieldToViewModel()
         bindToHiddenTable()
         subscribeToLoading()
+        subscribeIsGetConversionsRateButtonEnabled()
         subscribeToResponse()
         subscribeToGetConversionsRatesButton()
     }
     
-    //MARK: - Actions
-    @IBAction func getConversionsRateBtnPressed(_ sender: Any) {
-        setContainerTableViewIsHidden(isHidden: false)
-        getHistoricalConversionsRatesData()
-       // getConversionsRatesButton.isEnabled = false
-    }
-
     //MARK: - Methods
     func setUpNavigationBar() {
         self.title = "Conversions Rates"
@@ -52,11 +45,7 @@ class ConversionsRatesViewController: UIViewController {
     func setupTableView() {
         tableView.register(UINib(nibName: conversionsRatesTableViewCell, bundle: nil), forCellReuseIdentifier: conversionsRatesTableViewCell)
     }
-    
-    func setContainerTableViewIsHidden(isHidden : Bool) {
-        containerView.isHidden = isHidden
-    }
-    
+
     func bindBaseCurrencyNameTextFieldToViewModel() {
         baseCurrencyNameTextField.rx.text.orEmpty.bind(to: conversionsRatesViewModel.baseCurrencyNameBehavior).disposed(by: disposeBag)
     }
@@ -86,9 +75,12 @@ class ConversionsRatesViewController: UIViewController {
                 .items(cellIdentifier: conversionsRatesTableViewCell,
                        cellType: ConversionsRatesTableViewCell.self)) { row, currencyRates, cell in
                 cell.configCell(data: currencyRates)
-                
         }
         .disposed(by: disposeBag)
+    }
+    
+    func subscribeIsGetConversionsRateButtonEnabled() {
+        conversionsRatesViewModel.isGetConversionsRatesEnabled.bind(to: getConversionsRatesButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func subscribeToGetConversionsRatesButton() {

@@ -29,6 +29,28 @@ class ConversionsRatesViewModel {
         return isTableHidden.asObservable()
     }
     
+    var isDateValid: Observable<Bool> {
+        return dateBehavior.asObservable().map {(date) -> Bool in
+            let isDateEmpty = date.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            return isDateEmpty
+        }
+    }
+    
+    var isCurrencyValid: Observable<Bool> {
+        return baseCurrencyNameBehavior.asObservable().map {(currency) -> Bool in
+            let isCurrencyEmpty = currency.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            return isCurrencyEmpty
+        }
+    }
+    
+    var isGetConversionsRatesEnabled: Observable<Bool> {
+        return Observable.combineLatest(isDateValid , isCurrencyValid) { (isDateEmpty ,isCurrencyEmpty) in
+            let GetConversionsRatesValid = !isDateEmpty
+            return GetConversionsRatesValid
+        }
+    }
+    
+    
     //MARK: - Methods
     func getHistoricalConversionsRatesData() {
         loadingBehavior.accept(true)
