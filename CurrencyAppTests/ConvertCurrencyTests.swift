@@ -40,6 +40,7 @@ class ConvertCurrencyTests: XCTestCase {
         XCTAssertEqual(sut.convertedAmountTextField.text, "1")
     }
     */
+    
     override func tearDownWithError() throws {
         sut = nil
     }

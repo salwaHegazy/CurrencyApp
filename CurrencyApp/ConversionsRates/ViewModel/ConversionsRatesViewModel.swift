@@ -15,15 +15,28 @@ class ConversionsRatesViewModel {
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
     var showAlertBehavior = BehaviorRelay<String>(value: "")
     
+    var baseCurrencyNameBehavior = BehaviorRelay<String>(value: "")
+    var dateBehavior = BehaviorRelay<String>(value: "")
+    
+    private var isTableHidden = BehaviorRelay<Bool>(value: false)
     private var historicalConversionsRatesSubject = PublishSubject<[CurrencyRateModel]>()
 
     var historicalConversionsRatesObservable: Observable<[CurrencyRateModel]> {
         return historicalConversionsRatesSubject
     }
     
+    var isTableHiddenObservable: Observable<Bool> {
+        return isTableHidden.asObservable()
+    }
+    
     //MARK: - Methods
     func getHistoricalConversionsRatesData() {
         loadingBehavior.accept(true)
+       /*
+        let params = [
+            "base": baseCurrencyNameBehavior.value
+        ]
+       */
         let decoder = JSONDecoder()
         if let historicalConversionsRatesFileUrl  = Bundle.main.url(forResource: "Historical_ConversionsRates", withExtension: "json"),
            let data = try? Data.init(contentsOf: historicalConversionsRatesFileUrl),
@@ -37,8 +50,10 @@ class ConversionsRatesViewModel {
                     ConversionsRates.append(currencyRate)
                 }
                 self.historicalConversionsRatesSubject.onNext(ConversionsRates)
+                self.isTableHidden.accept(false)
             } else {
                 self.showAlertBehavior.accept("There is no data..")
+                self.isTableHidden.accept(true)
             }
         }
     }

@@ -28,6 +28,7 @@ class ConvertCurrencyViewController: UIViewController {
     let toDropDown   = DropDown()
     let convertCurrencyViewModel = ConvertCurrencyViewModel()
     let disposeBag = DisposeBag()
+    var isConvertCurrencyEnabled : Bool?
 
     //MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -212,8 +213,13 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     func showOptionsButtonsToNavigate() {
-        historicalDataButton.isHidden = false
-        conversionsRatesButton.isHidden = false
+        if historicalDataButton.isHidden {
+           historicalDataButton.isHidden = false
+           conversionsRatesButton.isHidden = false
+        } else {
+           historicalDataButton.isHidden = true
+           conversionsRatesButton.isHidden = true
+        }
     }
     
     func navigateToHistoricalDataViewController() {

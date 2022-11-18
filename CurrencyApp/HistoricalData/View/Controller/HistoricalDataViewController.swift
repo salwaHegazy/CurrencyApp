@@ -11,8 +11,8 @@ import RxSwift
 class HistoricalDataViewController: UIViewController {
     
     //MARK: - Outlets
-    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var containerView: UIView!
     
     //MARK: - Members
     let historicalDataTableViewCell = "HistoricalDataTableViewCell"
@@ -24,6 +24,7 @@ class HistoricalDataViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigationBar()
         setupTableView()
+        bindToHiddenTable()
         subscribeToLoading()
         subscribeToResponse()
         getHistoricalData()
@@ -38,6 +39,10 @@ class HistoricalDataViewController: UIViewController {
         tableView.register(UINib(nibName: historicalDataTableViewCell, bundle: nil), forCellReuseIdentifier: historicalDataTableViewCell)
     }
     
+    func bindToHiddenTable() {
+        historicalDataViewModel.isTableHiddenObservable.bind(to: containerView.rx.isHidden).disposed(by: disposeBag)
+    }
+    
     func subscribeToLoading() {
         historicalDataViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
             if isLoading {
@@ -49,7 +54,7 @@ class HistoricalDataViewController: UIViewController {
     }
     
     func subscribeToResponse() {
-        self.historicalDataViewModel.historicalDataModelObservable
+        historicalDataViewModel.historicalDataModelObservable
             .bind(to: self.tableView
                 .rx
                 .items(cellIdentifier: historicalDataTableViewCell,
@@ -58,6 +63,13 @@ class HistoricalDataViewController: UIViewController {
                 
         }
         .disposed(by: disposeBag)
+    }
+    
+    func subscribeToShowAlert() {
+        historicalDataViewModel.showAlertBehavior.subscribe(onNext: { [weak self] message in
+           guard let self = self else { return }
+            self.showAlert(withTitle: "Alert" , andMessage: message)
+        }).disposed(by: disposeBag)
     }
 
     func getHistoricalData() {

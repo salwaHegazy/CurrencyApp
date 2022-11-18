@@ -30,6 +30,34 @@ class ConvertCurrencyViewModel {
         return convertedAmountSubject
     }
     
+    var isFromCurrencyValid: Observable<Bool> {
+        return fromCurrencyBehavior.asObservable().map {(currency) -> Bool in
+            let isFromValueEmpty = currency.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            return isFromValueEmpty
+        }
+    }
+    
+    var isToCurrencyValid: Observable<Bool> {
+        return toCurrencyBehavior.asObservable().map {(currency) -> Bool in
+            let isToValueEmpty = currency.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            return isToValueEmpty
+        }
+    }
+    
+    var isAmountValid: Observable<Bool> {
+        return amountToConvertBehavior.asObservable().map {(amount) -> Bool in
+            let isAmountEmpty = amount.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            return isAmountEmpty
+        }
+    }
+    
+    var isConvertCurrencyEnabled: Observable<Bool> {
+        return Observable.combineLatest(isAmountValid, isFromCurrencyValid ,isToCurrencyValid) { (isAmountEmpty, isFromValueEmpty , isToValueEmpty) in
+            let convertValid = !isAmountEmpty && !isFromValueEmpty && !isToValueEmpty
+            return convertValid
+        }
+    }
+    
     let apiService : APIServiceProtocol
     
     init( apiService: APIServiceProtocol = APIService(apiEnvironment: .development)) {
@@ -97,11 +125,9 @@ class ConvertCurrencyViewModel {
             self.loadingBehavior.accept(false)
             if let error = error {
                 self.showAlertBehavior.accept(error.localizedDescription)
-               // print(error.localizedDescription)
                 
             } else if let errorModel = errorModel {
                 self.showAlertBehavior.accept(errorModel.error?.info ?? "")
-               // print(errorModel.error.info)
                 
             } else {
                 guard let convertModel = convertModel else { return }

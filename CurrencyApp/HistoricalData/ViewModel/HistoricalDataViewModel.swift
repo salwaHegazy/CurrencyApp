@@ -16,10 +16,15 @@ class HistoricalDataViewModel {
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
     var showAlertBehavior = BehaviorRelay<String>(value: "")
     
+    private var isTableHidden = BehaviorRelay<Bool>(value: false)
     private var historicalDataModelSubject = PublishSubject<[CurrencyModel]>()
     
     var historicalDataModelObservable: Observable<[CurrencyModel]> {
         return historicalDataModelSubject
+    }
+    
+    var isTableHiddenObservable: Observable<Bool> {
+        return isTableHidden.asObservable()
     }
     
     //MARK: - Methods
@@ -38,8 +43,10 @@ class HistoricalDataViewModel {
                     currenciesRates.append(currency)
                 }
                 self.historicalDataModelSubject.onNext(currenciesRates)
+                self.isTableHidden.accept(false)
             } else {
                 self.showAlertBehavior.accept("There is no data..")
+                self.isTableHidden.accept(true)
             }
         }
     }

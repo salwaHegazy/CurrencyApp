@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "symbols": {
+    "AED": "United Arab Emirates Dirham",
+    "EGP": "Egyption",
+    "USD": "Albanian Lek",
+    "EUR": "Armenian Dram"
+  }
+}
