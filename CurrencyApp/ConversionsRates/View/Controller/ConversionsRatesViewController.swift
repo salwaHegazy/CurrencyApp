@@ -91,14 +91,7 @@ class ConversionsRatesViewController: UIViewController {
                 self.conversionsRatesViewModel.getHistoricalConversionsRatesData()
         }).disposed(by: disposeBag)
     }
-    
-    func subscribeToShowAlert() {
-        conversionsRatesViewModel.showAlertBehavior.subscribe(onNext: { [weak self] message in
-           guard let self = self else { return }
-            self.showAlert(withTitle: "Alert" , andMessage: message)
-        }).disposed(by: disposeBag)
-    }
-    
+ 
     func getHistoricalConversionsRatesData() {
         conversionsRatesViewModel.getHistoricalConversionsRatesData()
     }

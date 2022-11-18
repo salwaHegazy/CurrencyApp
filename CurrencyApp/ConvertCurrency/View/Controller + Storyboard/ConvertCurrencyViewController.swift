@@ -22,6 +22,7 @@ class ConvertCurrencyViewController: UIViewController {
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var historicalDataButton: UIButton!
     @IBOutlet weak var conversionsRatesButton: UIButton!
+    @IBOutlet weak var buttonsContainer: UIStackView!
     
     //MARK: - Members
     let fromDropDown = DropDown()
@@ -42,10 +43,10 @@ class ConvertCurrencyViewController: UIViewController {
         subscribeToCurrenciesResponse()
         setUpTextFields()
         setUpDropDownViews()
-        setUpOptionsButton()
-        bindAmountTextFieldsToViewModel()
+        bindAmountTextFieldToViewModel()
         bindConvertedAmountTextFieldsToViewModel()
         subscribeToLoading()
+        subscribeIsSwapCurrenciesButtonEnabled()
         subscribeToConvertCurrenciesResponse()
     }
     
@@ -90,7 +91,7 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     @objc func startToConvert () {
-        bindAmountTextFieldsToViewModel()
+        bindAmountTextFieldToViewModel()
         bindFromSelectedTextFieldToViewModel()
         bindToSelectedTextFieldToViewModel()
         convertCurrency()
@@ -134,12 +135,7 @@ class ConvertCurrencyViewController: UIViewController {
         toDropDown.dataSource   = currencies
     }
     
-    func setUpOptionsButton() {
-        historicalDataButton.isHidden = true
-        conversionsRatesButton.isHidden = true
-    }
-    
-    func bindAmountTextFieldsToViewModel() {
+    func bindAmountTextFieldToViewModel() {
         amountTextField.rx.text.orEmpty.bind(to: convertCurrencyViewModel.amountToConvertBehavior).disposed(by: disposeBag)
     }
     
@@ -188,37 +184,40 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     func subscribeToConvertCurrenciesResponse() {
-        convertCurrencyViewModel.convertedAmountObservable.subscribe(onNext: { result in
-            self.convertedAmountTextField.text = result
+        convertCurrencyViewModel.convertedAmountObservable.subscribe(onNext: { [weak self] result in
+            guard let self = self else { return }
+            
+            if self.convertedAmountTextField.text?.isEmpty ?? true {
+                self.convertedAmountTextField.text = result
+            } else {
+                self.amountTextField.text = result
+            }
+            
         }).disposed(by: disposeBag)
+    }
+    
+    func subscribeIsSwapCurrenciesButtonEnabled() {
+        convertCurrencyViewModel.isSwapEnabled.bind(to: swapButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     func swapCurrencies(fromTextFieldTxt : String? , toTextFieldTxt : String? ,
                         amountTextFieldTxt : String? , convertedAmountTextFieldTxt : String?) {
+
+        guard let toSelectedText = toTextFieldTxt else { return }
+        toSelectedTextField.text = fromTextFieldTxt
+        fromSelectedTextField.text = toSelectedText
         
-        if !(fromSelectedTextField.text?.isEmpty ?? true) && !(toSelectedTextField.text?.isEmpty ?? true) {
-            guard let toSelectedText = toTextFieldTxt else { return }
-            toSelectedTextField.text = fromTextFieldTxt
-            fromSelectedTextField.text = toSelectedText
-            
-            if !(amountTextField.text?.isEmpty ?? true) || !(convertedAmountTextField.text?.isEmpty ?? true) {
-                guard let convertedValue = convertedAmountTextFieldTxt else { return }
-                convertedAmountTextField.text = amountTextFieldTxt
-                amountTextField.text = convertedValue
-            }
-          
-        } else {
-            showAlert(withTitle: "Alert", andMessage: "Please Select Required Fields...")
-        }
+        guard let convertedValue = convertedAmountTextFieldTxt else { return }
+        convertedAmountTextField.text = amountTextFieldTxt
+        amountTextField.text = convertedValue
+
     }
     
     func showOptionsButtonsToNavigate() {
-        if historicalDataButton.isHidden {
-           historicalDataButton.isHidden = false
-           conversionsRatesButton.isHidden = false
+        if buttonsContainer.isHidden {
+           buttonsContainer.isHidden = false
         } else {
-           historicalDataButton.isHidden = true
-           conversionsRatesButton.isHidden = true
+           buttonsContainer.isHidden = true
         }
     }
     
@@ -234,7 +233,7 @@ class ConvertCurrencyViewController: UIViewController {
         }
     }
     
-    func getAvailableCurrencies(){
+    func getAvailableCurrencies() {
         convertCurrencyViewModel.getAvailableCurrencies()
     }
     
@@ -246,7 +245,7 @@ class ConvertCurrencyViewController: UIViewController {
             
         } else {
             
-            showAlert(withTitle: "Alert", andMessage: "Please Select Required Fields...")
+            showAlert(withTitle: "Alert", andMessage: "Please Fill Required Fields...")
         }
     }
 }

@@ -18,7 +18,7 @@ class ConvertCurrencyViewModel {
     
     var fromCurrencyBehavior = BehaviorRelay<String>(value: "")
     var toCurrencyBehavior = BehaviorRelay<String>(value: "")
-    var amountToConvertBehavior = BehaviorRelay<String>(value: "")
+    var amountToConvertBehavior = BehaviorRelay<String>(value: "1")
     var loadingBehavior = BehaviorRelay<Bool>(value: false)
     var showAlertBehavior = BehaviorRelay<String>(value: "")
 
@@ -55,6 +55,13 @@ class ConvertCurrencyViewModel {
         return Observable.combineLatest(isAmountValid, isFromCurrencyValid ,isToCurrencyValid) { (isAmountEmpty, isFromValueEmpty , isToValueEmpty) in
             let convertValid = !isAmountEmpty && !isFromValueEmpty && !isToValueEmpty
             return convertValid
+        }
+    }
+    
+    var isSwapEnabled:  Observable<Bool> {
+        return Observable.combineLatest(isAmountValid, isFromCurrencyValid ,isToCurrencyValid) { (isAmountEmpty, isFromValueEmpty , isToValueEmpty) in
+            let swapValid = !isAmountEmpty && !isFromValueEmpty && !isToValueEmpty
+            return swapValid
         }
     }
     
@@ -119,6 +126,7 @@ class ConvertCurrencyViewModel {
             "apikey" : "sqQqQKqoyXF50INsC7kSJV2lNgTxfYTp"
         ]
         
+        print(params)
        
         apiService.getData(endPoint: URLPath.convertCurrency, method: .get, params: params, encoding: URLEncoding.queryString,headers: headers) { [weak self] (convertModel: ConvertModel?, errorModel: BaseErrorModel?, error) in
             guard let self = self else { return }

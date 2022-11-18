@@ -134,7 +134,7 @@
                                     <action selector="detailsBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PH7-wL-xpD"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Ygq-N9-uXU">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Ygq-N9-uXU">
                                 <rect key="frame" x="115" y="338" width="184" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqX-5T-Hep">
@@ -180,6 +180,7 @@
                     <navigationItem key="navigationItem" id="Leg-Nc-ffd"/>
                     <connections>
                         <outlet property="amountTextField" destination="xaS-Sw-zW1" id="z9n-YA-8gC"/>
+                        <outlet property="buttonsContainer" destination="Ygq-N9-uXU" id="vCz-bP-BP7"/>
                         <outlet property="conversionsRatesButton" destination="Jtj-kh-FIT" id="Bv1-J6-auV"/>
                         <outlet property="convertedAmountTextField" destination="2XF-DF-1e0" id="knb-M4-4NL"/>
                         <outlet property="detailsButton" destination="11j-Q2-4PG" id="URI-bc-GSS"/>
@@ -203,7 +204,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DES-ZA-Xo8">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DES-ZA-Xo8">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kA9-PC-NPL">

@@ -65,13 +65,6 @@ class HistoricalDataViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
-    func subscribeToShowAlert() {
-        historicalDataViewModel.showAlertBehavior.subscribe(onNext: { [weak self] message in
-           guard let self = self else { return }
-            self.showAlert(withTitle: "Alert" , andMessage: message)
-        }).disposed(by: disposeBag)
-    }
-
     func getHistoricalData() {
         historicalDataViewModel.getHistoricalData()
     }
