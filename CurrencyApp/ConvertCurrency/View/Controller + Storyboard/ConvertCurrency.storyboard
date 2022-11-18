@@ -117,12 +117,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11j-Q2-4PG">
-                                <rect key="frame" x="157" y="258" width="100" height="40"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11j-Q2-4PG" customClass="DesignableButton" customModule="CurrencyApp" customModuleProvider="target">
+                                <rect key="frame" x="157" y="258" width="100" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.17815347749999999" blue="0.3430719277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="BSL-0a-OKU"/>
-                                    <constraint firstAttribute="height" constant="40" id="cW4-f6-hZv"/>
+                                    <constraint firstAttribute="height" constant="50" id="cW4-f6-hZv"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -130,38 +130,56 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="detailsBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PH7-wL-xpD"/>
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Ygq-N9-uXU">
-                                <rect key="frame" x="115" y="338" width="184" height="120"/>
+                                <rect key="frame" x="115" y="348" width="184" height="140"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqX-5T-Hep">
-                                        <rect key="frame" x="14.333333333333343" y="0.0" width="155.33333333333334" height="40"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqX-5T-Hep" customClass="DesignableButton" customModule="CurrencyApp" customModuleProvider="target">
+                                        <rect key="frame" x="14.333333333333343" y="0.0" width="155.33333333333334" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.17815347749999999" blue="0.3430719277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title=" Historical Data">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="historicalDataBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lZF-8Z-TbV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtj-kh-FIT">
-                                        <rect key="frame" x="0.0" y="80" width="184" height="40"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtj-kh-FIT" customClass="DesignableButton" customModule="CurrencyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="90" width="184" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.17815347749999999" blue="0.3430719277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Conversions Rates">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="conversionsRatesBtnPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Eri-cr-bgO"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Jtj-kh-FIT" firstAttribute="height" secondItem="VqX-5T-Hep" secondAttribute="height" id="Ay5-7P-UyU"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -275,23 +293,28 @@
                                     <constraint firstAttribute="width" secondItem="3ka-eB-d9E" secondAttribute="width" multiplier="1.1823" id="r5h-Ib-hEP"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxp-gB-Cat">
-                                <rect key="frame" x="97.666666666666671" y="174" width="218.66666666666663" height="40"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxp-gB-Cat" customClass="DesignableButton" customModule="CurrencyApp" customModuleProvider="target">
+                                <rect key="frame" x="97.666666666666671" y="174" width="218.66666666666663" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.17815347749999999" blue="0.3430719277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Jb3-5r-AWK"/>
+                                    <constraint firstAttribute="height" constant="50" id="Jb3-5r-AWK"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Get Conversions Rates">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4L-9n-fcP">
-                                <rect key="frame" x="0.0" y="224" width="414" height="638"/>
+                                <rect key="frame" x="0.0" y="234" width="414" height="628"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PAR-hW-1qI">
-                                        <rect key="frame" x="20" y="20" width="374" height="598"/>
+                                        <rect key="frame" x="20" y="20" width="374" height="588"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -352,6 +375,23 @@
             <point key="canvasLocation" x="-1726" y="72"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="11j-Q2-4PG">
+            <size key="intrinsicContentSize" width="83.666666666666671" height="35.666666666666664"/>
+        </designable>
+        <designable name="Jtj-kh-FIT">
+            <size key="intrinsicContentSize" width="184" height="35.666666666666664"/>
+        </designable>
+        <designable name="Syj-TA-Thv">
+            <size key="intrinsicContentSize" width="45.666666666666664" height="34"/>
+        </designable>
+        <designable name="VqX-5T-Hep">
+            <size key="intrinsicContentSize" width="155.33333333333334" height="35.666666666666664"/>
+        </designable>
+        <designable name="sxp-gB-Cat">
+            <size key="intrinsicContentSize" width="218.66666666666666" height="35.666666666666664"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.triangle.swap" catalog="system" width="128" height="100"/>
         <image name="chevron.down.circle.fill" catalog="system" width="128" height="121"/>
