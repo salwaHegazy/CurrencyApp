@@ -90,7 +90,7 @@ class ConversionsRatesViewController: UIViewController {
     func subscribeToLoading() {
         conversionsRatesViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
             if isLoading {
-                self.showIndicator(withTitle: "", and: "")
+                self.showIndicator()
             } else {
                 self.hideIndicator()
             }

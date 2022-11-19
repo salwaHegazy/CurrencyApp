@@ -37,11 +37,14 @@ class HistoricalDataViewModel {
             self.loadingBehavior.accept(false)
             let historicalRates = historicalDataModel.rates
             if historicalRates.count > 0 {
+                
                 var currenciesRates = [CurrencyModel]()
+             
                 for (key, value) in historicalRates {
                     let currency = CurrencyModel(date: key, rate: value)
                     currenciesRates.append(currency)
                 }
+                
                 self.historicalDataModelSubject.onNext(currenciesRates)
                 self.isTableHidden.accept(false)
             } else {

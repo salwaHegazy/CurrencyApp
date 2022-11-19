@@ -20,6 +20,7 @@ class HistoricalDataViewController: UIViewController {
     let historicalDataTableViewCell = "HistoricalDataTableViewCell"
     let historicalDataViewModel = HistoricalDataViewModel()
     let disposeBag = DisposeBag()
+   
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -44,7 +45,10 @@ class HistoricalDataViewController: UIViewController {
     
     func setUpChartView() {
         chartView.createChart(xValues: ["AUD" , "CAD" ,"USD"],
-                              yValuesArr: [[1.278047,1.274202,1.280135] , [1.302303,1.299083,1.296868] , [1.322891,1.315066,1.314491]])
+                              yValuesArr: [[1.278047,1.274202,1.280135] ,
+                                           [1.302303,1.299083,1.296868] ,
+                                           [1.322891,1.315066,1.314491]]
+                              )
     }
     
     func bindToHiddenTable() {
@@ -54,7 +58,7 @@ class HistoricalDataViewController: UIViewController {
     func subscribeToLoading() {
         historicalDataViewModel.loadingBehavior.subscribe(onNext: { (isLoading) in
             if isLoading {
-                self.showIndicator(withTitle: "", and: "")
+                self.showIndicator()
             } else {
                 self.hideIndicator()
             }
