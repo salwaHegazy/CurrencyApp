@@ -7,12 +7,14 @@
 
 import UIKit
 import RxSwift
+import Charts
 
 class HistoricalDataViewController: UIViewController {
     
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var chartView: BarChartView!
     
     //MARK: - Members
     let historicalDataTableViewCell = "HistoricalDataTableViewCell"
@@ -28,6 +30,7 @@ class HistoricalDataViewController: UIViewController {
         subscribeToLoading()
         subscribeToResponse()
         getHistoricalData()
+        setUpChartView()
     }
     
     //MARK: - Methods
@@ -37,6 +40,11 @@ class HistoricalDataViewController: UIViewController {
     
     func setupTableView() {
         tableView.register(UINib(nibName: historicalDataTableViewCell, bundle: nil), forCellReuseIdentifier: historicalDataTableViewCell)
+    }
+    
+    func setUpChartView() {
+        chartView.createChart(xValues: ["AUD" , "CAD" ,"USD"],
+                              yValuesArr: [[1.278047,1.274202,1.280135] , [1.302303,1.299083,1.296868] , [1.322891,1.315066,1.314491]])
     }
     
     func bindToHiddenTable() {
@@ -69,3 +77,5 @@ class HistoricalDataViewController: UIViewController {
         historicalDataViewModel.getHistoricalData()
     }
 }
+
+

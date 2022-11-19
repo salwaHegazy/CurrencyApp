@@ -12,6 +12,8 @@ target 'CurrencyApp' do
   pod 'RxCocoa', '~> 5.1.0'
   pod 'DropDown'
   pod 'CleanyModal'
+  pod 'Charts'
+
   
 end
 

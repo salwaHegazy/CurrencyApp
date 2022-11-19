@@ -207,11 +207,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DES-ZA-Xo8">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbm-RX-dSk" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="54" width="414" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vi8-It-Z6c">
+                                <rect key="frame" x="0.0" y="392" width="414" height="450"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kA9-PC-NPL">
-                                        <rect key="frame" x="20" y="20" width="374" height="778"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t8b-aV-7yd">
+                                        <rect key="frame" x="20" y="20" width="374" height="410"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
@@ -219,10 +223,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="kA9-PC-NPL" secondAttribute="trailing" constant="20" id="4Rh-4L-170"/>
-                                    <constraint firstItem="kA9-PC-NPL" firstAttribute="top" secondItem="DES-ZA-Xo8" secondAttribute="top" constant="20" id="eQ7-cG-2Yv"/>
-                                    <constraint firstAttribute="bottom" secondItem="kA9-PC-NPL" secondAttribute="bottom" constant="20" id="l6p-yr-T6Y"/>
-                                    <constraint firstItem="kA9-PC-NPL" firstAttribute="leading" secondItem="DES-ZA-Xo8" secondAttribute="leading" constant="20" id="lCj-6X-cQ3"/>
+                                    <constraint firstAttribute="bottom" secondItem="t8b-aV-7yd" secondAttribute="bottom" constant="20" id="D20-sG-KQb"/>
+                                    <constraint firstItem="t8b-aV-7yd" firstAttribute="top" secondItem="Vi8-It-Z6c" secondAttribute="top" constant="20" id="h5I-iH-eQA"/>
+                                    <constraint firstAttribute="trailing" secondItem="t8b-aV-7yd" secondAttribute="trailing" constant="20" id="nZS-f2-dSM"/>
+                                    <constraint firstItem="t8b-aV-7yd" firstAttribute="leading" secondItem="Vi8-It-Z6c" secondAttribute="leading" constant="20" id="oJH-c4-6Mx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -230,20 +234,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MSs-z7-3vb" firstAttribute="trailing" secondItem="DES-ZA-Xo8" secondAttribute="trailing" id="5Q6-nI-FbE"/>
-                            <constraint firstItem="MSs-z7-3vb" firstAttribute="bottom" secondItem="DES-ZA-Xo8" secondAttribute="bottom" id="AVu-0j-LwK"/>
-                            <constraint firstItem="DES-ZA-Xo8" firstAttribute="leading" secondItem="MSs-z7-3vb" secondAttribute="leading" id="H4o-1B-PQV"/>
-                            <constraint firstItem="DES-ZA-Xo8" firstAttribute="top" secondItem="MSs-z7-3vb" secondAttribute="top" id="SZP-9b-g68"/>
+                            <constraint firstItem="wbm-RX-dSk" firstAttribute="height" secondItem="E5k-rD-MIg" secondAttribute="height" multiplier="0.354911" id="0o4-qw-HPR"/>
+                            <constraint firstItem="wbm-RX-dSk" firstAttribute="trailing" secondItem="MSs-z7-3vb" secondAttribute="trailing" id="299-5b-Wab"/>
+                            <constraint firstItem="wbm-RX-dSk" firstAttribute="leading" secondItem="MSs-z7-3vb" secondAttribute="leading" id="4Fs-g3-Ojm"/>
+                            <constraint firstItem="Vi8-It-Z6c" firstAttribute="top" secondItem="wbm-RX-dSk" secondAttribute="bottom" constant="20" id="NTc-kv-PiT"/>
+                            <constraint firstItem="wbm-RX-dSk" firstAttribute="top" secondItem="MSs-z7-3vb" secondAttribute="top" constant="10" id="Zv3-hJ-AvH"/>
+                            <constraint firstItem="Vi8-It-Z6c" firstAttribute="leading" secondItem="MSs-z7-3vb" secondAttribute="leading" id="jLr-hB-DOp"/>
+                            <constraint firstItem="MSs-z7-3vb" firstAttribute="bottom" secondItem="Vi8-It-Z6c" secondAttribute="bottom" constant="20" id="xJ3-Tx-9k7"/>
+                            <constraint firstItem="Vi8-It-Z6c" firstAttribute="trailing" secondItem="MSs-z7-3vb" secondAttribute="trailing" id="zl9-eR-WIt"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="containerView" destination="DES-ZA-Xo8" id="QGh-0X-yuG"/>
-                        <outlet property="tableView" destination="kA9-PC-NPL" id="0Pe-IT-K5q"/>
+                        <outlet property="chartView" destination="wbm-RX-dSk" id="2ZC-ky-baz"/>
+                        <outlet property="containerView" destination="Vi8-It-Z6c" id="0Px-0q-Tib"/>
+                        <outlet property="tableView" destination="t8b-aV-7yd" id="aPI-sv-fcg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNt-S7-8gw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-193" y="72"/>
+            <point key="canvasLocation" x="-194.20289855072465" y="71.651785714285708"/>
         </scene>
         <!--Conversions Rates View Controller-->
         <scene sceneID="0eC-AF-Skd">
@@ -355,23 +364,6 @@
             <point key="canvasLocation" x="-1726" y="72"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="11j-Q2-4PG">
-            <size key="intrinsicContentSize" width="83.666666666666671" height="35.666666666666664"/>
-        </designable>
-        <designable name="Jtj-kh-FIT">
-            <size key="intrinsicContentSize" width="184" height="35.666666666666664"/>
-        </designable>
-        <designable name="Syj-TA-Thv">
-            <size key="intrinsicContentSize" width="45.666666666666664" height="34"/>
-        </designable>
-        <designable name="VqX-5T-Hep">
-            <size key="intrinsicContentSize" width="155.33333333333334" height="35.666666666666664"/>
-        </designable>
-        <designable name="sxp-gB-Cat">
-            <size key="intrinsicContentSize" width="218.66666666666666" height="35.666666666666664"/>
-        </designable>
-    </designables>
     <resources>
         <image name="arrow.triangle.swap" catalog="system" width="128" height="100"/>
         <image name="chevron.down.circle.fill" catalog="system" width="128" height="121"/>

@@ -24,7 +24,7 @@ class HistoricalDataTableViewCell: UITableViewCell {
     }
 
     func configCell (data : CurrencyModel) {
-        dataLabel.text = data.currencyName
+        dataLabel.text = data.date
         firstCurrNameLabel.text = "AUD"
         firstCurrRateLabel.text = String(data.rate.aud)
         secondCurrencyNameLabel.text = "CAD"

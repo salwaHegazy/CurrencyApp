@@ -8,6 +8,6 @@
 import Foundation
 
 struct CurrencyModel  {
-    let currencyName: String
+    let date: String
     let rate: Rate
 }
