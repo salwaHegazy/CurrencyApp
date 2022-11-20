@@ -13,6 +13,8 @@ class TestingConvertCurrencyUIButtonsTests: XCTestCase {
     var sut : ConvertCurrencyViewController!
     
     override func setUpWithError() throws {
+        try super.setUpWithError()
+        
         let storyboard = UIStoryboard(name: "ConvertCurrency", bundle: nil)
         
         sut = storyboard.instantiateViewController(withIdentifier: "ConvertCurrencyViewController") as? ConvertCurrencyViewController
@@ -62,6 +64,7 @@ class TestingConvertCurrencyUIButtonsTests: XCTestCase {
     
     override func tearDownWithError() throws {
         sut = nil
+        try super.tearDownWithError()
     }
 
 }

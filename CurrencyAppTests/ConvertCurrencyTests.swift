@@ -13,6 +13,8 @@ class ConvertCurrencyTests: XCTestCase {
     var sut : ConvertCurrencyViewController!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+        
         let storyboard = UIStoryboard(name: "ConvertCurrency", bundle: nil)
         
         sut = storyboard.instantiateViewController(withIdentifier: "ConvertCurrencyViewController") as? ConvertCurrencyViewController
@@ -31,18 +33,10 @@ class ConvertCurrencyTests: XCTestCase {
         sut.setUpDropDownListsDataSource(currencies)
         XCTAssertEqual(sut.toDropDown.dataSource, currencies)
     }
-   /*
-    func testSwapCurrencies() throws {
-        sut.swapCurrencies(fromTextFieldTxt: "USD", toTextFieldTxt: "EGP", amountTextFieldTxt: "1", convertedAmountTextFieldTxt: "24.48")
-        XCTAssertEqual(sut.fromSelectedTextField.text, "EGP")
-        XCTAssertEqual(sut.toSelectedTextField.text, "USD")
-        XCTAssertEqual(sut.amountTextField.text, "24.48")
-        XCTAssertEqual(sut.convertedAmountTextField.text, "1")
-    }
-    */
-    
+  
     override func tearDownWithError() throws {
         sut = nil
+        try super.tearDownWithError()
     }
 
 }

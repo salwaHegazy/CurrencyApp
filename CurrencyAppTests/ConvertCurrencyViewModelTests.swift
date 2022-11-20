@@ -14,6 +14,7 @@ class ConvertCurrencyViewModelTests: XCTestCase {
     var mockAPIService : APIServiceProtocol!
     
     override func setUpWithError() throws {
+        try super.setUpWithError()
         mockAPIService = MockApiService()
         sut = ConvertCurrencyViewModel(apiService: mockAPIService)
     }
@@ -31,6 +32,7 @@ class ConvertCurrencyViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
         sut = nil
         mockAPIService = nil
+        try super.tearDownWithError()
     }
 
 }
