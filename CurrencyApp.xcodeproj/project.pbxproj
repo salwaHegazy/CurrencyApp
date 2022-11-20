@@ -26,6 +26,8 @@
 		35A7A23A2927B42100A61D9C /* ConversionsRatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A7A2382927B42100A61D9C /* ConversionsRatesTableViewCell.xib */; };
 		35AB09172924D8EF002E438E /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB09162924D8EF002E438E /* MockApiService.swift */; };
 		35AB091B2924DC75002E438E /* ConvertCurrencyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB091A2924DC75002E438E /* ConvertCurrencyViewModelTests.swift */; };
+		35AB310A292A5A2D00D537E2 /* UIViewController + identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB3109292A5A2D00D537E2 /* UIViewController + identifier.swift */; };
+		35AB310C292A5A5500D537E2 /* UITableViewCell + Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB310B292A5A5500D537E2 /* UITableViewCell + Identifier.swift */; };
 		35AFDF88292121C800D3395B /* ConvertCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFDF87292121C800D3395B /* ConvertCurrencyViewController.swift */; };
 		35AFDF8A292121EC00D3395B /* ConvertCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFDF89292121EC00D3395B /* ConvertCurrencyViewModel.swift */; };
 		35AFDF8C2921220400D3395B /* ConvertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFDF8B2921220400D3395B /* ConvertModel.swift */; };
@@ -86,6 +88,8 @@
 		35A7A2382927B42100A61D9C /* ConversionsRatesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversionsRatesTableViewCell.xib; sourceTree = "<group>"; };
 		35AB09162924D8EF002E438E /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		35AB091A2924DC75002E438E /* ConvertCurrencyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCurrencyViewModelTests.swift; sourceTree = "<group>"; };
+		35AB3109292A5A2D00D537E2 /* UIViewController + identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + identifier.swift"; sourceTree = "<group>"; };
+		35AB310B292A5A5500D537E2 /* UITableViewCell + Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Identifier.swift"; sourceTree = "<group>"; };
 		35AFDF87292121C800D3395B /* ConvertCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCurrencyViewController.swift; sourceTree = "<group>"; };
 		35AFDF89292121EC00D3395B /* ConvertCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCurrencyViewModel.swift; sourceTree = "<group>"; };
 		35AFDF8B2921220400D3395B /* ConvertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertModel.swift; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 			children = (
 				355FEF4329217AA7000E0E20 /* UIViewController + Extension.swift */,
 				35D17822292258F4008D26BE /* AlertViewController.swift */,
+				35AB3109292A5A2D00D537E2 /* UIViewController + identifier.swift */,
+				35AB310B292A5A5500D537E2 /* UITableViewCell + Identifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -655,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35A154392926679E0032D308 /* HistoricalConversionsRatesModel.swift in Sources */,
+				35AB310A292A5A2D00D537E2 /* UIViewController + identifier.swift in Sources */,
 				35AFDF8C2921220400D3395B /* ConvertModel.swift in Sources */,
 				355FEF3D29216DEF000E0E20 /* APIService.swift in Sources */,
 				355FEF462921804A000E0E20 /* AvailableCurrenciesModel.swift in Sources */,
@@ -673,6 +680,7 @@
 				35AFDF88292121C800D3395B /* ConvertCurrencyViewController.swift in Sources */,
 				355FEF3F29216E87000E0E20 /* NConstants.swift in Sources */,
 				35A4DD032926D52400C69432 /* CurrencyRateModel.swift in Sources */,
+				35AB310C292A5A5500D537E2 /* UITableViewCell + Identifier.swift in Sources */,
 				35D1782D2922BC7F008D26BE /* HistoricalDataViewModel.swift in Sources */,
 				35D1782B2922BC3F008D26BE /* HistoricalDataViewController.swift in Sources */,
 				35AFDF8A292121EC00D3395B /* ConvertCurrencyViewModel.swift in Sources */,

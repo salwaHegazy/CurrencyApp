@@ -17,7 +17,7 @@ class TestingConversionsRatesUITextFieldPropertiesTests: XCTestCase {
         
         let storyboard = UIStoryboard(name: "ConvertCurrency", bundle: nil)
         
-        sut = storyboard.instantiateViewController(withIdentifier: "ConversionsRatesViewController") as? ConversionsRatesViewController
+        sut = storyboard.instantiateViewController(withIdentifier: ConversionsRatesViewController.identifier) as? ConversionsRatesViewController
         
         sut.loadViewIfNeeded()
     }

@@ -17,7 +17,6 @@ class HistoricalDataViewController: UIViewController {
     @IBOutlet weak var chartView: BarChartView!
     
     //MARK: - Members
-    let historicalDataTableViewCell = "HistoricalDataTableViewCell"
     let historicalDataViewModel = HistoricalDataViewModel()
     let disposeBag = DisposeBag()
    
@@ -40,7 +39,7 @@ class HistoricalDataViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableView.register(UINib(nibName: historicalDataTableViewCell, bundle: nil), forCellReuseIdentifier: historicalDataTableViewCell)
+        tableView.register(UINib(nibName: String(describing: HistoricalDataTableViewCell.self), bundle: nil), forCellReuseIdentifier: HistoricalDataTableViewCell.identifier)
     }
     
     func setUpChartView() {
@@ -69,7 +68,7 @@ class HistoricalDataViewController: UIViewController {
         historicalDataViewModel.historicalDataModelObservable
             .bind(to: self.tableView
                 .rx
-                .items(cellIdentifier: historicalDataTableViewCell,
+                .items(cellIdentifier: HistoricalDataTableViewCell.identifier,
                        cellType: HistoricalDataTableViewCell.self)) { row, currencyRates, cell in
                 cell.configCell(data: currencyRates)
                 

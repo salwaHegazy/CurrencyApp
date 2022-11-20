@@ -223,13 +223,13 @@ class ConvertCurrencyViewController: UIViewController {
     }
     
     func navigateToHistoricalDataViewController() {
-        if let historicalDataVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "HistoricalDataViewController") as? HistoricalDataViewController {
+        if let historicalDataVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: HistoricalDataViewController .identifier) as? HistoricalDataViewController {
            self.navigationController?.pushViewController(historicalDataVC, animated: true)
         }
     }
     
     func navigateToConversionsRatesViewController() {
-        if let conversionsRatesVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: "ConversionsRatesViewController") as? ConversionsRatesViewController {
+        if let conversionsRatesVC = UIStoryboard(name: "ConvertCurrency", bundle: nil).instantiateViewController(withIdentifier: ConversionsRatesViewController.identifier) as? ConversionsRatesViewController {
            self.navigationController?.pushViewController(conversionsRatesVC, animated: true)
         }
     }

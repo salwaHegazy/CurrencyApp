@@ -19,7 +19,6 @@ class ConversionsRatesViewController: UIViewController {
     @IBOutlet weak var getConversionsRatesButton: UIButton!
     
     //MARK: - Members
-    let conversionsRatesTableViewCell = "ConversionsRatesTableViewCell"
     let conversionsRatesViewModel = ConversionsRatesViewModel()
     let disposeBag = DisposeBag()
     
@@ -53,7 +52,7 @@ class ConversionsRatesViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableView.register(UINib(nibName: conversionsRatesTableViewCell, bundle: nil), forCellReuseIdentifier: conversionsRatesTableViewCell)
+        tableView.register(UINib(nibName: String(describing: ConversionsRatesTableViewCell.self), bundle: nil), forCellReuseIdentifier: ConversionsRatesTableViewCell.identifier)
     }
     
     func setupTextFields() {
@@ -101,7 +100,7 @@ class ConversionsRatesViewController: UIViewController {
         conversionsRatesViewModel.historicalConversionsRatesObservable
             .bind(to: self.tableView
                 .rx
-                .items(cellIdentifier: conversionsRatesTableViewCell,
+                .items(cellIdentifier: ConversionsRatesTableViewCell.identifier,
                        cellType: ConversionsRatesTableViewCell.self)) { row, currencyRates, cell in
                 cell.configCell(data: currencyRates)
         }
